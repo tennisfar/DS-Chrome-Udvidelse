@@ -14,7 +14,7 @@
     <div class="tile is-ancestor">
       <div class="tile is-parent is-4">
         <article class="tile notification is-success">
-          <button class="delete" id="deleteNotificationDanskeSpil"></button>
+<!--          <button class="delete" id="deleteNotificationDanskeSpil"></button>-->
           <div class="content">
             <p class="title is-6">Danske Spil</p>
             <div class="content">
@@ -34,87 +34,33 @@
 
       <div class="tile is-parent is-4">
         <article class="tile notification is-info">
-          <button class="delete" id="deleteNotificationJiraDli"></button>
+<!--          <button class="delete" id="deleteNotificationJiraDli"></button>-->
           <div class="content">
-            <p class="title is-6">Jira DLI</p>
+            <p class="title is-6">Jira</p>
             <div class="buttons are-small">
+              <button class="button is-fullwidth" id="myJiraIssues">Mine Jira</button>
               <button class="button is-fullwidth" id="openJiraBoardDli">DLI Board</button>
-              <button class="button is-fullwidth" id="makeJiraDli">Opret DLI Jira</button>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="tile is-parent is-4">
-        <article class="tile notification is-danger">
-          <button class="delete" id="deleteNotificationJiraDlo"></button>
-          <div class="content">
-            <p class="title is-6">Jira DLO</p>
-            <div class="buttons are-small">
               <button class="button is-fullwidth" id="openJiraBoardDlo">DLO Board</button>
+              <button class="button is-fullwidth" id="makeJiraDli">Opret DLI Jira</button>
               <button class="button is-fullwidth" id="makeJiraDlo">Opret DLO Jira</button>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="tile is-parent is-4">
-        <article class="tile notification is-link">
-          <button class="delete" id="deleteNotificationSitecoreProd"></button>
-          <div class="content">
-            <p class="title is-6">Sitecore Produktion</p>
-            <div class="buttons are-small">
-              <button class="button is-fullwidth" id="openSitecoreProdDli">DLI</button>
-              <button class="button is-fullwidth" id="openSitecoreProdDlo">DLO</button>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="tile is-parent is-4">
-        <article class="tile notification is-link">
-          <button class="delete" id="deleteNotificationSitecoreTown21"></button>
-          <div class="content">
-            <p class="title is-6">Sitecore Town21</p>
-            <div class="buttons are-small">
-              <button class="button is-fullwidth" id="openSitecoreTown21Dli">DLI</button>
-              <button class="button is-fullwidth" id="openSitecoreTown21Dlo">DLO</button>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="tile is-parent is-4">
-        <article class="tile notification is-link">
-          <button class="delete" id="deleteNotificationSitecoreDevelop"></button>
-          <div class="content">
-            <p class="title is-6">Sitecore Udvikling</p>
-            <div class="buttons are-small">
-              <button class="button is-fullwidth" id="openSitecoreDev">Develop</button>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="tile is-parent is-4">
-        <article class="tile notification is-link">
-          <button class="delete" id="deleteNotificationSitecoreTrunk"></button>
-          <div class="content">
-            <p class="title is-6">Sitecore Udvikling</p>
-            <div class="buttons are-small">
-              <button class="button is-fullwidth" id="openSitecoreTrunk">Trunk</button>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="tile is-parent is-4">
-        <article class="tile notification is-warning">
-          <button class="delete" id="deleteNotificationJira"></button>
-          <div class="content">
-            <p class="title is-6">GitHub</p>
-            <div class="buttons are-small">
               <button class="button is-fullwidth" id="makeJira" disabled>Generer branch fra Jira</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="tile is-parent is-4">
+        <article class="tile notification is-link">
+<!--          <button class="delete" id="deleteNotificationSitecoreProd"></button>-->
+          <div class="content">
+            <p class="title is-6">Sitecore</p>
+            <div class="buttons are-small">
+              <button class="button is-fullwidth" id="openSitecoreProdDli">Produktion DLI</button>
+              <button class="button is-fullwidth" id="openSitecoreProdDlo">Produktion DLO</button>
+              <button class="button is-fullwidth" id="openSitecoreTown21Dli">Town21 DLI</button>
+              <button class="button is-fullwidth" id="openSitecoreTown21Dlo">Town21 DLO</button>
+              <button class="button is-fullwidth" id="openSitecoreDev">Develop</button>
+              <button class="button is-fullwidth" id="openSitecoreTrunk">Trunk</button>
             </div>
           </div>
         </article>
@@ -124,7 +70,8 @@
         <div class="content">
           <div class="buttons are-small is-justify-content-flex-end">
             <button class="button" id="resetExtension">Reset</button>
-            <button class="button" id="currentVersion">Version 0.1</button>
+            <button class="button" id="settings">Indstillinger</button>
+            <button class="button" id="currentVersion">Version 0.2</button>
           </div>
         </div>
       </div>
@@ -135,7 +82,7 @@
     <script src="jiraBranch.js"></script>
     <script src="makeJira.js"></script>
     <script src="openJiraBoard.js"></script>
-    <script src="showNotifications.js"></script>
+<!--    <script src="showNotifications.js"></script>-->
     <script src="openSitecore.js"></script>
     <script src="currentVersion.js"></script>
     <script src="popup.js"></script>
