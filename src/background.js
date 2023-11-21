@@ -7,8 +7,8 @@ const showNotification = {
   sitecoreDevelop: true,
   sitecoreTrunk: true,
   jira: true,
-}
+};
 
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.sync.set({ showNotification })
-})
+  chrome.storage.sync.set({ showNotification });
+});

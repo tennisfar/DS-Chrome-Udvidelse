@@ -1,11 +1,10 @@
 (() => {
   const waitForElement = async (selector) => {
     while (!document.querySelector(selector)) {
-      await new Promise((resolve) => requestAnimationFrame(resolve))
+      await new Promise((resolve) => requestAnimationFrame(resolve));
     }
-    return document.querySelector(selector)
-  }
-
+    return document.querySelector(selector);
+  };
 
   const pickUpGithubCreateBranchPage = async () => {
     if (location.host === 'github.com' && location.search.includes('?newBranch=')) {
@@ -21,8 +20,7 @@
       const input = await waitForElement('[role=dialog][data-focus-trap="active"] input');
       if (input) input.value = newBranch;
     }
-  }
+  };
 
   pickUpGithubCreateBranchPage();
-
-})()
+})();
