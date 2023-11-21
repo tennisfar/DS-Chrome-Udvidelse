@@ -12,110 +12,120 @@
   </head>
   <body>
     <div class="tile is-ancestor">
-      <div class="tile is-vertical is-4">
-        <div class="tile is-parent">
-          <article class="tile notification is-success">
+      <div class="tile is-parent is-4">
+        <article class="tile notification is-success">
+          <button class="delete" id="deleteNotificationDanskeSpil"></button>
+          <div class="content">
+            <p class="title is-6">Danske Spil</p>
             <div class="content">
-              <p class="title is-6">Danske Spil</p>
-              <div class="content">
-                <div class="buttons are-small">
-                  <button class="button is-fullwidth" id="openInSitecore" disabled>Åben siden i Sitecore</button>
-                  <button class="button is-fullwidth" id="openInExperienceEditor" disabled>Åben siden i Editor</button>
-                  <button class="button is-fullwidth" id="showSitecoreComponents" disabled>Vis komponenter</button>
-                </div>
+              <div class="buttons are-small">
+                <button class="button is-fullwidth" id="openInSitecore" disabled>Åben siden i Sitecore</button>
+                <button class="button is-fullwidth" id="openInExperienceEditor" disabled>Åben siden i Editor</button>
+                <button class="button is-fullwidth" id="showSitecoreComponents" disabled>Vis komponenter</button>
               </div>
             </div>
-          </article>
-        </div>
+          </div>
+        </article>
       </div>
 
-      <div class="tile is-vertical is-4">
-        <div class="tile is-parent">
-          <article class="tile notification is-info">
-            <div class="content">
-              <p class="title is-6">Jira DLI</p>
-              <div class="buttons are-small">
-                <button class="button is-fullwidth" id="openJiraBoardDli">DLI Board</button>
-                <button class="button is-fullwidth" id="makeJiraDli">Opret DLI Jira</button>
-              </div>
+      <div class="tile is-parent is-4">
+        <article class="tile notification is-info">
+          <button class="delete" id="deleteNotificationJiraDli"></button>
+          <div class="content">
+            <p class="title is-6">Jira DLI</p>
+            <div class="buttons are-small">
+              <button class="button is-fullwidth" id="openJiraBoardDli">DLI Board</button>
+              <button class="button is-fullwidth" id="makeJiraDli">Opret DLI Jira</button>
             </div>
-          </article>
-        </div>
+          </div>
+        </article>
       </div>
 
-      <div class="tile is-vertical is-4">
-        <div class="tile is-parent">
-          <article class="tile notification is-danger">
-            <div class="content">
-              <p class="title is-6">Jira DLO</p>
-              <div class="buttons are-small">
-                <button class="button is-fullwidth" id="openJiraBoardDlo">DLO Board</button>
-                <button class="button is-fullwidth" id="makeJiraDlo">Opret DLO Jira</button>
-              </div>
+      <div class="tile is-parent is-4">
+        <article class="tile notification is-danger">
+          <button class="delete" id="deleteNotificationJiraDlo"></button>
+          <div class="content">
+            <p class="title is-6">Jira DLO</p>
+            <div class="buttons are-small">
+              <button class="button is-fullwidth" id="openJiraBoardDlo">DLO Board</button>
+              <button class="button is-fullwidth" id="makeJiraDlo">Opret DLO Jira</button>
             </div>
-          </article>
+          </div>
+        </article>
+      </div>
+
+      <div class="tile is-parent is-4">
+        <article class="tile notification is-link">
+          <button class="delete" id="deleteNotificationSitecoreProd"></button>
+          <div class="content">
+            <p class="title is-6">Sitecore Produktion</p>
+            <div class="buttons are-small">
+              <button class="button is-fullwidth" id="openSitecoreProdDli" disabled>DLI</button>
+              <button class="button is-fullwidth" id="openSitecoreProdDlo" disabled>DLO</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="tile is-parent is-4">
+        <article class="tile notification is-link">
+          <button class="delete" id="deleteNotificationSitecoreTown21"></button>
+          <div class="content">
+            <p class="title is-6">Sitecore Town21</p>
+            <div class="buttons are-small">
+              <button class="button is-fullwidth" id="openSitecoreTown21Dli" disabled>DLI</button>
+              <button class="button is-fullwidth" id="openSitecoreTown21Dlo" disabled>DLO</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="tile is-parent is-4">
+        <article class="tile notification is-link">
+          <button class="delete" id="deleteNotificationSitecoreDevelop"></button>
+          <div class="content">
+            <p class="title is-6">Sitecore Udvikling</p>
+            <div class="buttons are-small">
+              <button class="button is-fullwidth" id="openSitecoreDev" disabled>Develop</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="tile is-parent is-4">
+        <article class="tile notification is-link">
+          <button class="delete" id="deleteNotificationSitecoreTrunk"></button>
+          <div class="content">
+            <p class="title is-6">Sitecore Udvikling</p>
+            <div class="buttons are-small">
+              <button class="button is-fullwidth" id="openSitecoreTrunk" disabled>Trunk</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="tile is-parent is-4">
+        <article class="tile notification is-warning">
+          <button class="delete" id="deleteNotificationJira"></button>
+          <div class="content">
+            <p class="title is-6">Jira</p>
+            <div class="buttons are-small">
+              <button class="button is-fullwidth" id="makeJira" disabled>Generer branchnavn</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="tile is-parent is-12">
+        <div class="content">
+          <div class="buttons are-small is-justify-content-flex-end">
+            <button class="button is-fullwidthX" id="resetExtension">Reset</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="tile is-ancestor">
-      <div class="tile is-vertical is-4">
-        <div class="tile is-parent">
-          <article class="tile notification is-link">
-            <div class="content">
-              <p class="title is-6">Sitecore PROD.</p>
-              <div class="buttons are-small">
-                <button class="button is-fullwidth" id="openSitecoreProdDli" disabled>DLI</button>
-                <button class="button is-fullwidth" id="openSitecoreProdDlo" disabled>DLO</button>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <div class="tile is-vertical is-4">
-        <div class="tile is-parent">
-          <article class="tile notification is-link">
-            <div class="content">
-              <p class="title is-6">Sitecore Town21</p>
-              <div class="buttons are-small">
-                <button class="button is-fullwidth" id="openSitecoreTown21Dli" disabled>DLI</button>
-                <button class="button is-fullwidth" id="openSitecoreTown21Dlo" disabled>DLO</button>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <div class="tile is-vertical is-4">
-        <div class="tile is-parent">
-          <article class="tile notification is-link">
-            <div class="content">
-              <p class="title is-6">Sitecore Udvikling</p>
-              <div class="buttons are-small">
-                <button class="button is-fullwidth" id="openSitecoreDev" disabled>Develop</button>
-                <button class="button is-fullwidth" id="openSitecoreTrunk" disabled>Trunk</button>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="tile is-ancestor">
-      <div class="tile is-vertical is-4">
-        <div class="tile is-parent">
-          <article class="tile notification is-warning">
-            <div class="content">
-              <p class="title is-6">Jira</p>
-              <div class="buttons are-small">
-                <button class="button is-fullwidth" id="makeJira" disabled>Generer branchnavn</button>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
+    <!--<pre id="debug"></pre>-->
 
     <!--<script src="jiraBranch.js"></script>-->
     <script src="makeJira.js"></script>

@@ -1,4 +1,5 @@
 html {
+  /*height: 600px;*/
   width: 769px;
   overflow: hidden;
   margin: 0;
@@ -8,7 +9,6 @@ html {
 body {
   width: 100%;
   height: 100%;
-  margin: 0 0 -1rem;
   padding: 0 0.4rem;
 }
 
@@ -25,5 +25,9 @@ body {
 }
 
 .tile.is-parent {
-  padding: 0.8rem 0.4rem;
+  padding: 0.8rem 0.4rem 0;
+}
+
+.tile.is-ancestor {
+  flex-wrap: wrap;
 }
