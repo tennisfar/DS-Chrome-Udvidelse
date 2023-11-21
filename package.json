@@ -1,0 +1,7 @@
+{
+  "name": "ds-chrome-extension",
+  "version": "1.0.0",
+  "scripts": {
+    "pretty": "npx prettier . --write"
+  }
+}

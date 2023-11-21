@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "DS Chrome Extension",
+  "version": "1.0.0",
+  "description": "A Chrome extension for DS to improve productivity.",
+  "permissions": ["activeTab", "scripting", "storage", "tabs"],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "host_permissions": ["*://*.danskespil.dk/*"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup.html"
+  },
+  "icons": {}
+}
