@@ -4,7 +4,7 @@
 
     const hasFalseProperty = Object.values(showNotification).includes(false);
 
-    resetExtension.closest('.tile.is-parent').style.display = hasFalseProperty ? 'block' : 'none';
+    resetExtension.style.display = hasFalseProperty ? 'block' : 'none';
     resetExtension.addEventListener('click', () => {
       Object.keys(showNotification).forEach((key) => (showNotification[key] = true));
       chrome.storage.sync.set({ showNotification });
