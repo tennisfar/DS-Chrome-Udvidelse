@@ -19,14 +19,13 @@
       cta?.click();
       const input = await waitForElement('[role=dialog][data-focus-trap="active"] input');
       if (input) {
-
         setTimeout(() => {
           // Set the value attribute directly
           input.setAttribute('value', newBranch);
-          
+
           // Dispatch events
           const eventsToDispatch = ['input', 'change', 'keyup'];
-          eventsToDispatch.forEach(eventType => {
+          eventsToDispatch.forEach((eventType) => {
             const event = new Event(eventType, { bubbles: true, cancelable: true });
             input.dispatchEvent(event);
           });
