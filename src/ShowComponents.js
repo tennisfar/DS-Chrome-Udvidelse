@@ -1,5 +1,4 @@
 (() => {
-
   async function getCurrentTab() {
     let queryOptions = { active: true, lastFocusedWindow: true };
     // `tab` will either be a `tabs.Tab` instance or `undefined`.
@@ -10,15 +9,10 @@
   const handleEnableCta = async (cta) => {
     const tab = await getCurrentTab();
 
-
-    if (
-      tab?.url?.includes('danskespil.dk')
-      && !tab?.url?.includes('/sitecore/')
-    ) {
+    if (tab?.url?.includes('danskespil.dk') && !tab?.url?.includes('/sitecore/')) {
       cta.removeAttribute('disabled');
     }
-  }
-
+  };
 
   const handleShowComponents = () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -169,18 +163,15 @@
               'vikinglotto',
               'plus-abonnement',
               'quick',
-              'spil-sammen'
+              'spil-sammen',
             ];
             const host = window.location.host
               .replace(/danskespil\.dk/, '')
               .toLowerCase()
               .replace(/\.$/, '');
-            const region = window.location.pathname
-              .replace(/^\//, '')
-              .replace(/\/.*$/, '')
-              .toLowerCase();
+            const region = window.location.pathname.replace(/^\//, '').replace(/\/.*$/, '').toLowerCase();
             let dliOrDlo = dlo.indexOf(region) > -1 ? 'editdlo' : 'editdli';
-            dliOrDlo = (host === 'web.develop' || host === 'web.trunk') ? '' : dliOrDlo;
+            dliOrDlo = host === 'web.develop' || host === 'web.trunk' ? '' : dliOrDlo;
             sitecoreUrl = `https://${host}${dliOrDlo}.danskespil.dk/sitecore/shell/Applications/Content%20Editor.aspx?sc_bw=1&fo=`;
           };
 
@@ -210,16 +201,12 @@
                 // if the node is an element node, recurse into it
                 case Node.ELEMENT_NODE:
                   if (nextElShouldBeMarked) {
-                    let childTopPos =
-                      child.getBoundingClientRect().top + 10 + window.scrollY;
-                    let childLeftPos =
-                      child.getBoundingClientRect().left + 10 + window.scrollX;
+                    let childTopPos = child.getBoundingClientRect().top + 10 + window.scrollY;
+                    let childLeftPos = child.getBoundingClientRect().left + 10 + window.scrollX;
 
                     if (childLeftPos < 10) childLeftPos = 10;
 
-                    let strippedId =
-                      'dsSCId' +
-                      foundId.replace('{', '').replace('}', '').toLowerCase();
+                    let strippedId = 'dsSCId' + foundId.replace('{', '').replace('}', '').toLowerCase();
 
                     let el = document.createElement('a');
                     el.href = `${sitecoreUrl}${foundId}`;
@@ -251,18 +238,13 @@
                     });
 
                     el.onmouseover = (ev) => {
-                      const target = document.querySelector(
-                        `.${ev.target.getAttribute('dsSCId')}`
-                      );
+                      const target = document.querySelector(`.${ev.target.getAttribute('dsSCId')}`);
                       target && target.classList.add('dsSC__target');
                     };
                     el.onmouseout = (ev) => {
-                      const target = document.querySelector(
-                        `.${ev.target.getAttribute('dsSCId')}`
-                      );
+                      const target = document.querySelector(`.${ev.target.getAttribute('dsSCId')}`);
                       target && target.classList.remove('dsSC__target');
                     };
-
 
                     dsSC.appendChild(el);
 
@@ -297,18 +279,15 @@
           init();
           window.onresize = () => init();
           window.onscroll = () => init();
-        }
+        },
       });
     });
   };
 
-
   const showComponentsCta = document.querySelector('#showSitecoreComponents');
-  handleEnableCta(showComponentsCta)
+  handleEnableCta(showComponentsCta);
 
   showComponentsCta.addEventListener('click', () => {
     handleShowComponents();
   });
-
-
-})()
+})();
