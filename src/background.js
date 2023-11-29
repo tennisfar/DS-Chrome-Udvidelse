@@ -9,6 +9,12 @@ const showNotification = {
   jira: true,
 };
 
-chrome.runtime.onInstalled.addListener(() => {
+let favorites = [];
+
+chrome.runtime.onInstalled.addListener((reason) => {
   chrome.storage.sync.set({ showNotification });
+
+  if (reason === chrome.runtime.OnInstalledReason.INSTALL) {
+    chrome.storage.sync.set({ favorites });
+  }
 });

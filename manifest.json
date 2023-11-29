@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "DS Chrome Extension",
-  "version": "0.4",
+  "version": "0.5",
   "description": "A Chrome extension for DS to improve productivity.",
   "permissions": ["activeTab", "scripting", "storage", "tabs"],
   "background": {
@@ -11,7 +11,12 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["src/Content.js", "src/FindDictionary.js", "src/PickUpGithubCreateBranchPage.js"],
+      "js": [
+        "src/Content.js",
+        "src/FindDictionary.js",
+        "src/PickUpGithubCreateBranchPage.js",
+        "src/SitecoreLayoutImprovements.js"
+      ],
       "run_at": "document_end"
     }
   ],
