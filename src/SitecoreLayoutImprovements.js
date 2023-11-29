@@ -281,7 +281,7 @@
     }
   };
 
-  window.onload = () => {
+  const initialize = () => {
     if (location.host.endsWith('danskespil.dk')) {
       if (location.pathname === '/sitecore/shell/Applications/Content%20Editor.aspx') {
         stretchColumn();
@@ -301,4 +301,12 @@
       }
     }
   };
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    // Document is already ready to go, run your code
+    initialize();
+  } else {
+    // Add event listener for DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', initialize);
+  }
 })();

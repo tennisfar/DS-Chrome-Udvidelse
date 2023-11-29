@@ -14,7 +14,7 @@
     }
   };
 
-  const handleOpenPageInSitecore = async () => {
+  const handleOpenPageInExperienceEditor = async () => {
     const tab = await getCurrentTab();
 
     chrome.scripting.executeScript({
@@ -30,19 +30,19 @@
         if (lo.includes('town')) lo = lo.replace('.dan', 'edit' + reg + '.dan');
         if (lo.includes('//da')) lo = lo.replace('//dan', '//edit' + reg + '.dan');
 
-        lo += '/sitecore/shell/Applications/Content%20Editor.aspx?sc_bw=1';
+        lo += '/?sc_mode=edit';
 
-        window.open(`${lo}&fo=${sitecoreId}`, '_blank');
+        window.open(`${lo}&sc_itemid=${sitecoreId}`, '_blank');
       },
     });
   };
 
   document.addEventListener('DOMContentLoaded', function () {
-    const cta = document.querySelector('#openInSitecore');
+    const cta = document.querySelector('#openInExperienceEditor');
     handleEnableCta(cta);
 
     cta.addEventListener('click', () => {
-      handleOpenPageInSitecore();
+      handleOpenPageInExperienceEditor();
     });
   });
 })();

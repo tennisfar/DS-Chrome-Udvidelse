@@ -170,9 +170,7 @@
     });
   };
 
-  window.onload = () => {
-    if (location.host.endsWith('danskespil.dk') && !location.pathname.startsWith('/sitecore/')) {
-      document.addEventListener('selectionchange', findDictionary);
-    }
-  };
+  if (location.host.endsWith('danskespil.dk') && !location.pathname.startsWith('/sitecore/')) {
+    document.addEventListener('selectionchange', findDictionary);
+  }
 })();
