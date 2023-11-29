@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "DS Chrome Extension",
-  "version": "0.8",
+  "version": "0.9",
   "description": "A Chrome extension for DS to improve productivity.",
   "permissions": ["activeTab", "scripting", "storage", "tabs"],
   "background": {
