@@ -11,7 +11,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["src/content.js", "src/FindDictionary.js", "src/pickUpGithubCreateBranchPage.js"],
+      "js": ["src/Content.js", "src/FindDictionary.js", "src/PickUpGithubCreateBranchPage.js"],
       "run_at": "document_end"
     }
   ],
