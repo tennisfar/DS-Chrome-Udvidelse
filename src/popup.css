@@ -1,6 +1,6 @@
 html {
   /*height: 600px;*/
-  width: 769px;
+  /*width: 769px;*/
   overflow: hidden;
   margin: 0;
   padding: 10px;
@@ -30,4 +30,23 @@ body {
 
 .tile.is-ancestor {
   flex-wrap: wrap;
+}
+
+.button {
+  position: relative;
+}
+
+.button button.delete {
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 6px;
+}
+
+.show-settings div.button {
+  pointer-events: none;
+}
+
+.show-settings .button button.delete {
+  display: block;
 }

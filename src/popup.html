@@ -11,73 +11,109 @@
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <div class="tile is-ancestor">
-      <div class="tile is-parent is-4">
+    <div class="tile is-ancestor" id="container">
+      <div class="tile is-parent is-4" id="danskeSpilButtons">
         <article class="tile notification is-success">
-          <!--          <button class="delete" id="deleteNotificationDanskeSpil"></button>-->
           <div class="content">
             <p class="title is-6">Danske Spil</p>
             <div class="content">
               <div class="buttons are-small">
-                <button class="button is-fullwidth" id="showSitecoreComponents" disabled>
+                <div class="button is-fullwidth" id="showSitecoreComponents" disabled>
                   Vis komponenter på siden
-                </button>
-                <button class="button is-fullwidth" id="openInSitecore" disabled>Åben siden i Sitecore</button>
-                <button class="button is-fullwidth" id="openInExperienceEditor" disabled>
+                  <button class="delete is-small"></button>
+                </div>
+
+                <div class="button is-fullwidth" id="openInSitecore" disabled>
+                  Åben siden i Sitecore
+                  <button class="delete is-small"></button>
+                </div>
+
+                <div class="button is-fullwidth" id="openInExperienceEditor" disabled>
                   Åben siden i Experience Editor
-                </button>
+                  <button class="delete is-small"></button>
+                </div>
               </div>
             </div>
           </div>
         </article>
       </div>
 
-      <div class="tile is-parent is-4">
+      <div class="tile is-parent is-4" id="jiraButtons">
         <article class="tile notification is-info">
-          <!--          <button class="delete" id="deleteNotificationJiraDli"></button>-->
           <div class="content">
             <p class="title is-6">Jira</p>
             <div class="buttons are-small">
-              <button class="button is-fullwidth" id="openMyJira">Mine Jira</button>
-              <button class="button is-fullwidth" id="openJiraBoardDli">DLI Board</button>
-              <button class="button is-fullwidth" id="openJiraBoardDlo">DLO Board</button>
-              <button class="button is-fullwidth" id="makeJiraDli">Opret DLI Jira</button>
-              <button class="button is-fullwidth" id="makeJiraDlo">Opret DLO Jira</button>
-              <button class="button is-fullwidth" id="makeJira" disabled>Generer branch fra Jira</button>
+              <div class="button is-fullwidth" id="openMyJira">Mine Jira<button class="delete is-small"></button></div>
+              <div class="button is-fullwidth" id="openJiraBoardDli">
+                DLI Board<button class="delete is-small"></button>
+              </div>
+              <div class="button is-fullwidth" id="openJiraBoardDlo">
+                DLO Board<button class="delete is-small"></button>
+              </div>
+              <div class="button is-fullwidth" id="makeJiraDli">
+                Opret DLI Jira<button class="delete is-small"></button>
+              </div>
+              <div class="button is-fullwidth" id="makeJiraDlo">
+                Opret DLO Jira<button class="delete is-small"></button>
+              </div>
+              <div class="button is-fullwidth" id="makeJira" disabled>
+                Generer branch fra Jira<button class="delete is-small"></button>
+              </div>
             </div>
           </div>
         </article>
       </div>
 
-      <div class="tile is-parent is-4">
+      <div class="tile is-parent is-4" id="sitecoreButtons">
         <article class="tile notification is-link">
-          <!--          <button class="delete" id="deleteNotificationSitecoreProd"></button>-->
           <div class="content">
             <p class="title is-6">Sitecore</p>
             <div class="buttons are-small">
-              <button class="button is-fullwidth" id="openSitecoreProdDli">Produktion DLI</button>
-              <button class="button is-fullwidth" id="openSitecoreProdDlo">Produktion DLO</button>
-              <button class="button is-fullwidth" id="openSitecoreTown21Dli">Town21 DLI</button>
-              <button class="button is-fullwidth" id="openSitecoreTown21Dlo">Town21 DLO</button>
-              <button class="button is-fullwidth" id="openSitecoreDev">Develop</button>
-              <button class="button is-fullwidth" id="openSitecoreTrunk">Trunk</button>
+              <div class="button is-fullwidth" id="openSitecoreProdDli">
+                Produktion DLI<button class="delete is-small"></button>
+              </div>
+              <div class="button is-fullwidth" id="openSitecoreProdDlo">
+                Produktion DLO<button class="delete is-small"></button>
+              </div>
+              <div class="button is-fullwidth" id="openSitecoreTown21Dli">
+                Town21 DLI<button class="delete is-small"></button>
+              </div>
+              <div class="button is-fullwidth" id="openSitecoreTown21Dlo">
+                Town21 DLO<button class="delete is-small"></button>
+              </div>
+              <div class="button is-fullwidth" id="openSitecoreDev">
+                Develop<button class="delete is-small"></button>
+              </div>
+              <div class="button is-fullwidth" id="openSitecoreTrunk">
+                Trunk<button class="delete is-small"></button>
+              </div>
             </div>
           </div>
         </article>
       </div>
 
-      <div class="tile is-parent is-12">
+      <div class="tile is-parent is-12" id="controls">
         <div class="content">
           <div class="buttons are-small is-justify-content-flex-end">
-            <button class="button" id="resetExtension">Reset</button>
-            <button class="button" id="settings">Indstillinger</button>
-            <button class="button" id="updateStatus"></button>
+            <button class="button" id="settingsCta">Indstillinger</button>
+            <button class="button" id="updateStatus">Version --</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!--<pre id="debug"></pre>-->
+    <!--<div class="tile is-ancestor mt-2">-->
+    <!--    <div class="tile is-parent is-12">-->
+    <!--        <div class="content">-->
+    <!--            <div class="buttons are-small is-justify-content-flex-end">-->
+    <!--                <button class="button" id="settingsCta">Indstillinger</button>-->
+    <!--                <button class="button" id="updateStatus">Version &#45;&#45;</button>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
+
+    <!--    <pre id="debug"></pre>-->
 
     <!--    <script src="showNotifications.js"></script>-->
     <script src="./CurrentVersion.js"></script>
@@ -88,6 +124,7 @@
     <script src="./OpenSitecore.js"></script>
     <script src="./OpenPageInExperienceEditor.js"></script>
     <script src="./OpenPageInSitecore.js"></script>
+    <script src="./Settings.js"></script>
     <script src="./ShowComponents.js"></script>
     <script src="./Popup.js"></script>
   </body>
