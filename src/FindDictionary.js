@@ -1,8 +1,8 @@
 (() => {
   const findTextInDictionaries = () => {
-    const txt = window.getSelection().toString();
+    const searchString = window.getSelection().toString().toLowerCase();
 
-    if (txt?.length > 4) {
+    if (searchString?.length > 4) {
       let results = {};
 
       const output = ({ key, key2, key3, key4, key5, key6, key7, key8, res, dictionaryKey }) => {
@@ -46,27 +46,31 @@
         Object.keys(s).forEach((key) => {
           if (!s[key]) return;
 
-          if (typeof s[key] === 'string')
-            if (s[key].includes(txt))
+          if (typeof s[key] === 'string') {
+            if (s[key].toLowerCase().includes(searchString)) {
               output({
                 key,
                 res: s[key],
                 dictionaryKey,
               });
+            }
+          }
 
           Object.keys(s[key]).forEach((key2) => {
-            if (typeof s[key][key2] === 'string')
-              if (s[key][key2].includes(txt))
+            if (typeof s[key][key2] === 'string') {
+              if (s[key][key2].toLowerCase().includes(searchString)) {
                 output({
                   key,
                   key2,
                   res: s[key][key2],
                   dictionaryKey,
                 });
+              }
+            }
 
             Object.keys(s[key][key2]).forEach((key3) => {
-              if (typeof s[key][key2][key3] === 'string')
-                if (s[key][key2][key3].includes(txt))
+              if (typeof s[key][key2][key3] === 'string') {
+                if (s[key][key2][key3].toLowerCase().includes(searchString)) {
                   output({
                     key,
                     key2,
@@ -74,10 +78,12 @@
                     res: s[key][key2][key3],
                     dictionaryKey,
                   });
+                }
+              }
 
               Object.keys(s[key][key2][key3]).forEach((key4) => {
-                if (typeof s[key][key2][key3][key4] === 'string')
-                  if (s[key][key2][key3][key4].includes(txt))
+                if (typeof s[key][key2][key3][key4] === 'string') {
+                  if (s[key][key2][key3][key4].toLowerCase().includes(searchString)) {
                     output({
                       key,
                       key2,
@@ -86,10 +92,12 @@
                       res: s[key][key2][key3][key4],
                       dictionaryKey,
                     });
+                  }
+                }
 
                 Object.keys(s[key][key2][key3][key4]).forEach((key5) => {
-                  if (typeof s[key][key2][key3][key4][key5] === 'string')
-                    if (s[key][key2][key3][key4][key5].includes(txt))
+                  if (typeof s[key][key2][key3][key4][key5] === 'string') {
+                    if (s[key][key2][key3][key4][key5].toLowerCase().includes(searchString)) {
                       output({
                         key,
                         key2,
@@ -99,10 +107,12 @@
                         res: s[key][key2][key3][key4][key5],
                         dictionaryKey,
                       });
+                    }
+                  }
 
                   Object.keys(s[key][key2][key3][key4][key5]).forEach((key6) => {
-                    if (typeof s[key][key2][key3][key4][key5][key6] === 'string')
-                      if (s[key][key2][key3][key4][key5][key6].includes(txt))
+                    if (typeof s[key][key2][key3][key4][key5][key6] === 'string') {
+                      if (s[key][key2][key3][key4][key5][key6].toLowerCase().includes(searchString)) {
                         output({
                           key,
                           key2,
@@ -113,10 +123,12 @@
                           res: s[key][key2][key3][key4][key5][key6],
                           dictionaryKey,
                         });
+                      }
+                    }
 
                     Object.keys(s[key][key2][key3][key4][key5][key6]).forEach((key7) => {
-                      if (typeof s[key][key2][key3][key4][key5][key6][key7] === 'string')
-                        if (s[key][key2][key3][key4][key5][key6][key7].includes(txt))
+                      if (typeof s[key][key2][key3][key4][key5][key6][key7] === 'string') {
+                        if (s[key][key2][key3][key4][key5][key6][key7].toLowerCase().includes(searchString)) {
                           output({
                             key,
                             key2,
@@ -128,10 +140,12 @@
                             res: s[key][key2][key3][key4][key5][key6][key7],
                             dictionaryKey,
                           });
+                        }
+                      }
 
                       Object.keys(s[key][key2][key3][key4][key5][key6][key7]).forEach((key8) => {
-                        if (typeof s[key][key2][key3][key4][key5][key6][key7][key8] === 'string')
-                          if (s[key][key2][key3][key4][key5][key6][key7][key8].includes(txt))
+                        if (typeof s[key][key2][key3][key4][key5][key6][key7][key8] === 'string') {
+                          if (s[key][key2][key3][key4][key5][key6][key7][key8].toLowerCase().includes(searchString)) {
                             output({
                               key,
                               key2,
@@ -144,6 +158,8 @@
                               res: s[key][key2][key3][key4][key5][key6][key7][key8],
                               dictionaryKey,
                             });
+                          }
+                        }
                       });
                     });
                   });
@@ -176,7 +192,7 @@
 
     return `${protocol}${envPart}.danskespil.dk/sitecore/shell/Applications/Content%20Editor.aspx?sc_bw=1&fo=/sitecore/content/DanskeSpil/Site%20settings/Dictionary/`;
   };
-  
+
   const clearFillDictionary = () => {
     const removeElementById = (id) => {
       const el = document.getElementById(id);
