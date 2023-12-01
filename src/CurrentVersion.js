@@ -1,7 +1,7 @@
 (async () => {
   const updateDiv = document.querySelector('#updateStatus');
   const localDataUrl = '../manifest.json';
-  const gitHubApiUrl = 'https://api.github.com/repos/tennisfar/ds-chrome-extension/releases';
+  const gitHubApiUrl = 'https://api.github.com/repos/tennisfar/DS-Chrome-Udvidelse/releases';
 
   function isVersionLower(userVersion, newVersion) {
     const userParts = userVersion.split('.').map(Number);
@@ -29,7 +29,7 @@
       url = latestRelease.html_url;
       message = `Opdater til v. ${latestVersion} (du har ${localData.version})`;
     } else {
-      url = 'https://github.com/tennisfar/ds-chrome-extension/releases';
+      url = 'https://github.com/tennisfar/DS-Chrome-Udvidelse/releases';
       message = `Version ${localData.version}`;
     }
 

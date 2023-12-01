@@ -1,3 +1,3 @@
-# ds-chrome-extension
+# DS Chrome Udvidelse
 
-A Chrome extension for DS to improve productivity
+En Chrome/Edge udvidelse for DS.

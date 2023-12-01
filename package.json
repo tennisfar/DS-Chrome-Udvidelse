@@ -1,5 +1,5 @@
 {
-  "name": "ds-chrome-extension",
+  "name": "ds-chrome-udvidelse",
   "version": "1.0.0",
   "scripts": {
     "pretty": "npx prettier . --write"
