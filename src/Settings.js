@@ -60,8 +60,10 @@
         'openMyJira',
         'openJiraBoardDli',
         'openJiraBoardDlo',
+        'openJiraBoardFOR',
         'makeJiraDli',
         'makeJiraDlo',
+        'makeJiraFOR',
         'makeJira',
       ];
       jiraButtons.forEach((button) => handleDelete(button, showSettings, showButtons));

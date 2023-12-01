@@ -1,6 +1,7 @@
 (() => {
   const makeJiraDli = document.getElementById('makeJiraDli');
   const makeJiraDlo = document.getElementById('makeJiraDlo');
+  const makeJiraFOR = document.getElementById('makeJiraFOR');
 
   const createJiraDli = async () => {
     const waitForElement = async (selector) => {
@@ -61,6 +62,23 @@
     trigger.click();
   };
 
+  const createJiraFOR = async () => {
+    const waitForElement = async (selector) => {
+      while (!document.querySelector(selector)) {
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+      }
+      return document.querySelector(selector);
+    };
+
+    const pageIsReady = await waitForElement('main#main.aui-page-panel');
+
+    let create = await waitForElement('#create_link');
+    create.click();
+
+    let trigger = await waitForElement('#assign-to-me-trigger');
+    trigger.click();
+  };
+
   async function getCurrentTab() {
     let queryOptions = { active: true, lastFocusedWindow: true };
     // `tab` will either be a `tabs.Tab` instance or `undefined`.
@@ -110,6 +128,28 @@
     }
   };
 
+  const handleMakeJiraFOR = async () => {
+    const tab = await getCurrentTab();
+
+    if (tab?.url?.includes('jira.danskespil.dk') && tab?.url?.includes('projectKey=FOR')) {
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        function: createJiraFOR,
+      });
+    } else {
+      chrome.tabs.create(
+        { url: `https://jira.danskespil.dk/secure/RapidBoard.jspa?rapidView=632&projectKey=FOR` },
+        function (tab) {
+          chrome.scripting.executeScript({
+            target: { tabId: tab.id },
+            function: createJiraFOR,
+          });
+        }
+      );
+    }
+  };
+
   makeJiraDli?.addEventListener('click', () => handleMakeJiraDli());
   makeJiraDlo?.addEventListener('click', () => handleMakeJiraDlo());
+  makeJiraFOR?.addEventListener('click', () => handleMakeJiraFOR());
 })();
