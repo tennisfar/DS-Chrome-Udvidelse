@@ -23,10 +23,9 @@ let showSettings = false;
 let favorites = [];
 
 chrome.runtime.onInstalled.addListener((reason) => {
-  chrome.storage.sync.set({ showButtons });
-  chrome.storage.sync.set({ showSettings });
-
   if (reason === chrome.runtime.OnInstalledReason.INSTALL) {
     chrome.storage.sync.set({ favorites });
+    chrome.storage.sync.set({ showButtons });
+    chrome.storage.sync.set({ showSettings });
   }
 });
