@@ -188,7 +188,15 @@
     const protocol = location.protocol + '//';
     const isTownEnv = hostParts[0].includes('town');
     const isDevEnv = hostParts[0].includes('web');
-    const envPart = isTownEnv ? hostParts[0] : isDevEnv ? `web.${hostParts[1]}` : `edit${isDlo ? 'dlo' : 'dli'}`;
+    let envPart;
+
+    if (isDevEnv) {
+      envPart = `web.${hostParts[1]}`;
+    } else if (isTownEnv) {
+      envPart = `${hostParts[0]}edit${isDlo ? 'dlo' : 'dli'}`;
+    } else {
+      envPart = `edit${isDlo ? 'dlo' : 'dli'}`;
+    }
 
     return `${protocol}${envPart}.danskespil.dk/sitecore/shell/Applications/Content%20Editor.aspx?sc_bw=1&fo=/sitecore/content/DanskeSpil/Site%20settings/Dictionary/`;
   };
