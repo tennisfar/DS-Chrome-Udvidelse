@@ -11,11 +11,7 @@
       const params = new URLSearchParams(location.search);
       const newBranch = params.get('newBranch');
 
-      const url = new URL(window.location);
-      url.searchParams.delete('newBranch');
-      history.pushState({}, '', url);
-
-      const cta = await waitForElement('[partial-name="create-branch-button"] button');
+      const cta = await waitForElement('[app-name="repos-branches"] button');
       cta?.click();
       const input = await waitForElement('[role=dialog][data-focus-trap="active"] input');
       if (input) {
@@ -31,6 +27,10 @@
           });
         }, 500);
       }
+
+      const url = new URL(window.location);
+      url.searchParams.delete('newBranch');
+      history.pushState({}, '', url);
     }
   };
 
