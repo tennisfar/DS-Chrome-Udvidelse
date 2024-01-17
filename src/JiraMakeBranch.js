@@ -42,7 +42,7 @@
           type = type.innerText || type.title;
           type = type.trim().toLowerCase();
           type = type.replace(/story/, 'feature');
-          
+
           issue = issue.innerText.trim();
 
           summary = summary.innerText
@@ -53,9 +53,7 @@
 
           const branchName = `${type}/${issue}-${summary}`.slice(0, 50).replace(/-$/, '');
 
-          window.open(
-            'https://github.com/ds-itu-frontend-service/danskespil-website/branches?newBranch=' + branchName
-          );
+          window.open('https://github.com/ds-itu-frontend-service/danskespil-website/branches?newBranch=' + branchName);
         },
       });
     }

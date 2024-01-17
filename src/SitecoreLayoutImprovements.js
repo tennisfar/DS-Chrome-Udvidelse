@@ -1,6 +1,7 @@
 (() => {
   let previousSelectedSitecoreId = '';
   let showFavoritesPopup = false;
+  let defaultTextAreaHeight = '500px;';
 
   const stretchColumn = () => {
     const columnWidth = 400;
@@ -71,6 +72,35 @@
     `;
   };
 
+  const addFocusHeightOnElements = () => {
+    document
+      .querySelectorAll('.scEditorSectionPanelCell .scContentControl.scContentControlTreelist')
+      .forEach((element) => {
+        if (element.clientHeight === 220) {
+          element.style.height = '400px';
+        }
+      });
+  };
+
+  const fixInputCellTextArea = () => {
+    const txts = document.querySelectorAll('.scEditorFieldMarkerInputCell textarea');
+    if (txts.length === 0) return;
+
+    txts.forEach((txt) => {
+      txt.addEventListener('focus', function () {
+        this.setAttribute('spellcheck', false);
+        this.style.height = '800px';
+        this.style.fontSize = '14px';
+        this.style.fontFamily = 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace';
+      });
+
+      txt.addEventListener('blur', function () {
+        this.setAttribute('spellcheck', true);
+        this.style = `height: ${defaultTextAreaHeight}`; // From enlargeTreelist() function below.
+      });
+    });
+  };
+
   const enlargeTreelist = () => {
     const dataSection = document.querySelector('[id*="Section_Data"]');
     if (!dataSection) return;
@@ -78,7 +108,7 @@
       .querySelector('[id*="Section_Data"]')
       .parentElement.querySelector('.scContentControlTreelist');
     if (!dataTreelist) return;
-    dataTreelist.style = 'height: 500px;';
+    dataTreelist.style = `height: ${defaultTextAreaHeight}`;
   };
 
   const getFavoriteItemLabel = (favorite) => {
@@ -286,6 +316,8 @@
       if (location.pathname === '/sitecore/shell/Applications/Content%20Editor.aspx') {
         stretchColumn();
         scrollToItem();
+        fixInputCellTextArea();
+        addFocusHeightOnElements();
 
         addBookmark();
         setInterval(addBookmark, 500);
