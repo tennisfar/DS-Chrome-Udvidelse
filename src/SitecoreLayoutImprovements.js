@@ -86,13 +86,18 @@
     const txts = document.querySelectorAll('.scEditorFieldMarkerInputCell textarea');
     if (txts.length === 0) return;
 
-    const style = document.createElement('style');
-    style.innerHTML = `
+    if (!document.getElementById('fixInputCellTextArea')) {
+      const style = document.createElement('style');
+      style.id = 'fixInputCellTextArea';
+      style.innerHTML = `
       .monospace-font {font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;}
     `;
-    document.querySelector('body').appendChild(style);
+      document.querySelector('body').appendChild(style);
+    }
 
     txts.forEach((txt) => {
+      if (txt.classList.contains('monospace-font')) return;
+
       txt.classList.add('monospace-font');
       txt.setAttribute('spellcheck', false);
 
@@ -204,13 +209,14 @@
         cursor: pointer;
         background: red;
         white-space: nowrap;
-      }
-      `;
+      }`;
     }
 
     chrome.storage.sync.get('favorites', ({ favorites }) => {
       favorites = favorites || [];
-      favorites = favorites.sort((a, b) => (a.path > b.path ? 1 : -1));
+      if (favorites.length > 1) {
+        favorites = favorites.sort((a, b) => (a.path > b.path ? 1 : -1));
+      }
 
       const accInfo = document.querySelector('.sc-accountInformation');
       let fav = document.querySelector('#ChromeExtensionForSitecoreFavorites');
@@ -323,10 +329,10 @@
       if (location.pathname === '/sitecore/shell/Applications/Content%20Editor.aspx') {
         stretchColumn();
         scrollToItem();
-        fixInputCellTextArea();
         addFocusHeightOnElements();
 
         addBookmark();
+        setInterval(fixInputCellTextArea, 500);
         setInterval(addBookmark, 500);
 
         setInterval(enlargeTreelist, 500);
