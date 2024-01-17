@@ -86,16 +86,23 @@
     const txts = document.querySelectorAll('.scEditorFieldMarkerInputCell textarea');
     if (txts.length === 0) return;
 
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .monospace-font {font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;}
+    `;
+    document.querySelector('body').appendChild(style);
+
     txts.forEach((txt) => {
+      txt.classList.add('monospace-font');
+      txt.setAttribute('spellcheck', false);
+
       txt.addEventListener('focus', function () {
-        this.setAttribute('spellcheck', false);
         this.style.height = '800px';
-        this.style.fontSize = '14px';
-        this.style.fontFamily = 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace';
+        this.style.fontSize = '13px';
+        this.style.lineHeight = '1.45';
       });
 
       txt.addEventListener('blur', function () {
-        this.setAttribute('spellcheck', true);
         this.style = `height: ${defaultTextAreaHeight}`; // From enlargeTreelist() function below.
       });
     });
