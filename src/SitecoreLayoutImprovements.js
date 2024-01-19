@@ -3,6 +3,34 @@
   let showFavoritesPopup = false;
   let defaultTextAreaHeight = '500px;';
 
+  const addUrlToTreeListIds = () => {
+    const treeLists = document.querySelectorAll('.scContentControlSelectedList');
+
+    treeLists.forEach((treeList) => {
+      if (treeList.classList.contains('ChromeExtensionAddUrlToTreeListIds')) return;
+
+      const options = treeList.querySelectorAll('select option');
+      const help = treeList.parentElement.querySelector('.scContentControlTreeListHelp');
+
+      if (!help || options.length === 0) return;
+
+      treeList.classList.add('ChromeExtensionAddUrlToTreeListIds');
+
+      options.forEach((option) => {
+        const id = option.value?.split('|')?.[1];
+        if (!id) return;
+
+        option.addEventListener('click', () => {
+          const url = new URL(location.href);
+          url.searchParams.set('fo', id);
+          if (help.innerHTML.includes(id)) return;
+
+          help.innerHTML = `${help.innerHTML} <a href="${url.href}" target="_blank" style="margin-left: 10px;">${id}</a>`;
+        });
+      });
+    });
+  };
+
   const stretchColumn = () => {
     const columnWidth = 400;
     document.cookie = `scContentEditorFoldersWidth=${columnWidth}; expires=Thu, 31 Dec 2100 12:00:00 UTC; path=/`;
@@ -72,7 +100,7 @@
     `;
   };
 
-  const addFocusHeightOnElements = () => {
+  const increaseHeightOnTreeLists = () => {
     document
       .querySelectorAll('.scEditorSectionPanelCell .scContentControl.scContentControlTreelist')
       .forEach((element) => {
@@ -329,9 +357,9 @@
       if (location.pathname === '/sitecore/shell/Applications/Content%20Editor.aspx') {
         stretchColumn();
         scrollToItem();
-        addFocusHeightOnElements();
-
         addBookmark();
+        setInterval(addUrlToTreeListIds, 500);
+        setInterval(increaseHeightOnTreeLists, 500);
         setInterval(fixInputCellTextArea, 500);
         setInterval(addBookmark, 500);
 
