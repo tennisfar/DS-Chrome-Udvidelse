@@ -2,6 +2,8 @@
   const handleDelete = (elName, showSettings, showButtons) => {
     const el = document.getElementById(elName);
 
+    if (!el) return;
+    
     if (!showSettings) {
       el.style.display = showButtons[elName] ? 'block' : 'none';
       return;
