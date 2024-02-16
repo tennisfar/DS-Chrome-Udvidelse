@@ -1,41 +1,41 @@
-(() => {
-  const handleDelete = (elName, showSettings, showButtons) => {
-    const el = document.getElementById(elName);
+const handleDelete = (elName, showSettings, showButtons) => {
+  const el = document.getElementById(elName);
 
-    if (!el) return;
-    
-    if (!showSettings) {
-      el.style.display = showButtons[elName] ? 'block' : 'none';
-      return;
-    }
+  if (!el) return;
 
-    if (showSettings) {
-      el.classList.toggle('is-danger', !showButtons[elName]);
+  if (!showSettings) {
+    el.style.display = showButtons[elName] ? 'block' : 'none';
+    return;
+  }
 
-      el.querySelector('button.delete').addEventListener('click', (ev) => {
-        ev.stopPropagation();
-        showButtons[elName] = !showButtons[elName];
-        chrome.storage.sync.set({ showButtons });
-        location.reload();
-      });
-    }
-  };
+  if (showSettings) {
+    el.classList.toggle('is-danger', !showButtons[elName]);
 
-  const handleHideBlock = (elNames, blockEl, showSettings, showButtons) => {
-    if (showSettings) return;
-    let hideBlock = true;
-
-    elNames.forEach((elName) => {
-      if (showButtons[elName]) hideBlock = false;
+    el.querySelector('button.delete').addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      showButtons[elName] = !showButtons[elName];
+      chrome.storage.sync.set({ showButtons });
+      location.reload();
     });
+  }
+};
 
-    if (hideBlock) {
-      document.getElementById(blockEl).style.display = 'none';
-    }
+const handleHideBlock = (elNames, blockEl, showSettings, showButtons) => {
+  if (showSettings) return;
+  let hideBlock = true;
 
-    return hideBlock;
-  };
+  elNames.forEach((elName) => {
+    if (showButtons[elName]) hideBlock = false;
+  });
 
+  if (hideBlock) {
+    document.getElementById(blockEl).style.display = 'none';
+  }
+
+  return hideBlock;
+};
+
+export function setupSettings() {
   chrome.storage.sync.get('showSettings', ({ showSettings }) => {
     const content = document.querySelector('.is-ancestor');
     content.classList.toggle('show-settings', showSettings);
@@ -97,4 +97,4 @@
       // debug.innerHTML = JSON.stringify(hiddenBlocks, null, 2);
     });
   });
-})();
+}

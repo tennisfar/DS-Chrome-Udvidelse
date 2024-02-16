@@ -1,46 +1,40 @@
-(() => {
-  async function getCurrentTab() {
-    let queryOptions = { active: true, lastFocusedWindow: true };
-    // `tab` will either be a `tabs.Tab` instance or `undefined`.
-    let [tab] = await chrome.tabs.query(queryOptions);
-    return tab;
+import { getCurrentTab } from './ChromeTools';
+
+const handleEnableCta = async (cta) => {
+  const tab = await getCurrentTab();
+
+  if (tab?.url?.includes('danskespil.dk') && !tab?.url?.includes('/sitecore/')) {
+    cta.removeAttribute('disabled');
   }
+};
 
-  const handleEnableCta = async (cta) => {
-    const tab = await getCurrentTab();
+const handleShowComponents = () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.scripting.executeScript({
+      target: { tabId: tabs[0].id },
+      function: () => {
+        let dsSC;
+        let nextElShouldBeMarked;
+        let foundName;
+        let foundId;
+        let found = [];
+        let sitecoreUrl;
+        let resizeTimeout;
+        let dsSCExist;
 
-    if (tab?.url?.includes('danskespil.dk') && !tab?.url?.includes('/sitecore/')) {
-      cta.removeAttribute('disabled');
-    }
-  };
+        // toggle
+        dsSCExist = document.querySelector('#dsSC');
+        if (!!dsSCExist) {
+          dsSCExist.remove();
+          return;
+        }
 
-  const handleShowComponents = () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.scripting.executeScript({
-        target: { tabId: tabs[0].id },
-        function: () => {
-          let dsSC;
-          let nextElShouldBeMarked;
-          let foundName;
-          let foundId;
-          let found = [];
-          let sitecoreUrl;
-          let resizeTimeout;
-          let dsSCExist;
-
-          // toggle
-          dsSCExist = document.querySelector('#dsSC');
-          if (!!dsSCExist) {
-            dsSCExist.remove();
-            return;
-          }
-
-          const addStyle = () => {
-            let style = document.querySelector('#dsSCStyle');
-            if (!!style) style.remove();
-            style = document.createElement('style');
-            style.id = 'dsSCStyle';
-            style.innerText = `
+        const addStyle = () => {
+          let style = document.querySelector('#dsSCStyle');
+          if (!!style) style.remove();
+          style = document.createElement('style');
+          style.id = 'dsSCStyle';
+          style.innerText = `
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=block');
         
         .dsSC__item {
@@ -129,165 +123,166 @@
           display: none;
         }
         `.replace(/\n/g, '');
-            document.body.appendChild(style);
-          };
+          document.body.appendChild(style);
+        };
 
-          const addToggle = () => {
-            let dsSCToggle = document.querySelector('.dsSC__toggle');
-            if (!!dsSCToggle) dsSCToggle.remove();
-            dsSCToggle = document.createElement('div');
-            dsSCToggle.classList.add('dsSC__toggle');
-            dsSCToggle.innerHTML = `<img src='https://raw.githubusercontent.com/mikelothar/assets/master/ds-sitecore/icon.svg' alt>`;
-            dsSCToggle.onclick = () => {
-              const target = document.querySelector('#dsSC');
-              target && target.classList.toggle('dsSC--hidden');
-            };
-            document.body.appendChild(dsSCToggle);
+        const addToggle = () => {
+          let dsSCToggle = document.querySelector('.dsSC__toggle');
+          if (!!dsSCToggle) dsSCToggle.remove();
+          dsSCToggle = document.createElement('div');
+          dsSCToggle.classList.add('dsSC__toggle');
+          dsSCToggle.innerHTML = `<img src='https://raw.githubusercontent.com/mikelothar/assets/master/ds-sitecore/icon.svg' alt>`;
+          dsSCToggle.onclick = () => {
+            const target = document.querySelector('#dsSC');
+            target && target.classList.toggle('dsSC--hidden');
           };
+          document.body.appendChild(dsSCToggle);
+        };
 
-          const reset = () => {
-            dsSCExist = document.querySelector('#dsSC');
-            if (!!dsSCExist) dsSCExist.remove();
-            dsSC = document.createElement('div');
-            dsSC.id = 'dsSC';
-            previousTopPos = 0;
-            previousLeftPos = 0;
-          };
+        const reset = () => {
+          dsSCExist = document.querySelector('#dsSC');
+          if (!!dsSCExist) dsSCExist.remove();
+          dsSC = document.createElement('div');
+          dsSC.id = 'dsSC';
+          previousTopPos = 0;
+          previousLeftPos = 0;
+        };
 
-          const getSitecoreUrl = () => {
-            const dlo = [
-              'alt-eller-intet',
-              'eurojackpot',
-              'keno',
-              'lotto',
-              'vikinglotto',
-              'plus-abonnement',
-              'quick',
-              'spil-sammen',
-            ];
-            const host = window.location.host
-              .replace(/danskespil\.dk/, '')
-              .toLowerCase()
-              .replace(/\.$/, '');
-            const region = window.location.pathname.replace(/^\//, '').replace(/\/.*$/, '').toLowerCase();
-            let dliOrDlo = dlo.indexOf(region) > -1 ? 'editdlo' : 'editdli';
-            dliOrDlo = host === 'web.develop' || host === 'web.trunk' ? '' : dliOrDlo;
-            sitecoreUrl = `https://${host}${dliOrDlo}.danskespil.dk/sitecore/shell/Applications/Content%20Editor.aspx?sc_bw=1&fo=`;
-          };
+        const getSitecoreUrl = () => {
+          const dlo = [
+            'alt-eller-intet',
+            'eurojackpot',
+            'keno',
+            'lotto',
+            'vikinglotto',
+            'plus-abonnement',
+            'quick',
+            'spil-sammen',
+          ];
+          const host = window.location.host
+            .replace(/danskespil\.dk/, '')
+            .toLowerCase()
+            .replace(/\.$/, '');
+          const region = window.location.pathname.replace(/^\//, '').replace(/\/.*$/, '').toLowerCase();
+          let dliOrDlo = dlo.indexOf(region) > -1 ? 'editdlo' : 'editdli';
+          dliOrDlo = host === 'web.develop' || host === 'web.trunk' ? '' : dliOrDlo;
+          sitecoreUrl = `https://${host}${dliOrDlo}.danskespil.dk/sitecore/shell/Applications/Content%20Editor.aspx?sc_bw=1&fo=`;
+        };
 
-          const checkForId = (child) => {
-            const nodeValue = child.nodeValue;
-            if (nodeValue.match(/^[^\/].*({.*})/)) {
-              nextElShouldBeMarked = true;
-              foundName = nodeValue.replace(/{.*}/, '').trim();
-              foundId = nodeValue.match(/{.*}/)[0];
+        const checkForId = (child) => {
+          const nodeValue = child.nodeValue;
+          if (nodeValue.match(/^[^\/].*({.*})/)) {
+            nextElShouldBeMarked = true;
+            foundName = nodeValue.replace(/{.*}/, '').trim();
+            foundId = nodeValue.match(/{.*}/)[0];
+          }
+        };
+
+        const outputComments = (node) => {
+          // initialise the child node
+          let child = node.firstChild;
+          const prevPositions = [];
+
+          // loop while the child node exists
+          while (child) {
+            if (child === document.body.lastChild) {
+              // found.map((item) => console.error(item.name, parseInt(item.top)))
+              document.body.appendChild(dsSC);
             }
-          };
 
-          const outputComments = (node) => {
-            // initialise the child node
-            let child = node.firstChild;
-            const prevPositions = [];
+            // determine the type of the node
+            switch (child.nodeType) {
+              // if the node is an element node, recurse into it
+              case Node.ELEMENT_NODE:
+                if (nextElShouldBeMarked) {
+                  let childTopPos = child.getBoundingClientRect().top + 10 + window.scrollY;
+                  let childLeftPos = child.getBoundingClientRect().left + 10 + window.scrollX;
 
-            // loop while the child node exists
-            while (child) {
-              if (child === document.body.lastChild) {
-                // found.map((item) => console.error(item.name, parseInt(item.top)))
-                document.body.appendChild(dsSC);
-              }
+                  if (childLeftPos < 10) childLeftPos = 10;
 
-              // determine the type of the node
-              switch (child.nodeType) {
-                // if the node is an element node, recurse into it
-                case Node.ELEMENT_NODE:
-                  if (nextElShouldBeMarked) {
-                    let childTopPos = child.getBoundingClientRect().top + 10 + window.scrollY;
-                    let childLeftPos = child.getBoundingClientRect().left + 10 + window.scrollX;
+                  let strippedId = 'dsSCId' + foundId.replace('{', '').replace('}', '').toLowerCase();
 
-                    if (childLeftPos < 10) childLeftPos = 10;
+                  let el = document.createElement('a');
+                  el.href = `${sitecoreUrl}${foundId}`;
+                  el.target = 'dsSitecore';
+                  el.classList.add('dsSC__item');
+                  el.draggable = true;
+                  el.setAttribute('dsSCId', strippedId);
+                  child.classList.add(strippedId);
 
-                    let strippedId = 'dsSCId' + foundId.replace('{', '').replace('}', '').toLowerCase();
-
-                    let el = document.createElement('a');
-                    el.href = `${sitecoreUrl}${foundId}`;
-                    el.target = 'dsSitecore';
-                    el.classList.add('dsSC__item');
-                    el.draggable = true;
-                    el.setAttribute('dsSCId', strippedId);
-                    child.classList.add(strippedId);
-
-                    if (prevPositions.includes(`${childTopPos},${childLeftPos}`)) {
-                      childTopPos += 18;
-                      childLeftPos += 18;
-                    }
-                    prevPositions.push(`${childTopPos},${childLeftPos}`);
-
-                    el.style.top = childTopPos + 'px';
-                    el.style.left = childLeftPos + 'px';
-                    el.innerHTML = `<img src='https://raw.githubusercontent.com/mikelothar/assets/master/ds-sitecore/icon.svg' alt> ${foundName
-                      .replace(/View$/, '')
-                      .split(/(?=[A-Z])/)
-                      .join(' ')}`;
-
-                    let close = document.createElement('span');
-                    close.classList.add('dsSC__item-close');
-                    el.appendChild(close);
-                    close.addEventListener('click', (ev) => {
-                      ev.preventDefault();
-                      ev.target.parentElement.style.display = 'none';
-                    });
-
-                    el.onmouseover = (ev) => {
-                      const target = document.querySelector(`.${ev.target.getAttribute('dsSCId')}`);
-                      target && target.classList.add('dsSC__target');
-                    };
-                    el.onmouseout = (ev) => {
-                      const target = document.querySelector(`.${ev.target.getAttribute('dsSCId')}`);
-                      target && target.classList.remove('dsSC__target');
-                    };
-
-                    dsSC.appendChild(el);
-
-                    nextElShouldBeMarked = false;
-                    previousTopPos = childTopPos;
-                    found.push({ name: foundName, id: foundId, top: childTopPos });
+                  if (prevPositions.includes(`${childTopPos},${childLeftPos}`)) {
+                    childTopPos += 18;
+                    childLeftPos += 18;
                   }
-                  outputComments(child);
-                  break;
+                  prevPositions.push(`${childTopPos},${childLeftPos}`);
 
-                // if the node is a comment node, output its value
-                case Node.COMMENT_NODE:
-                  checkForId(child);
-                  break;
-              }
+                  el.style.top = childTopPos + 'px';
+                  el.style.left = childLeftPos + 'px';
+                  el.innerHTML = `<img src='https://raw.githubusercontent.com/mikelothar/assets/master/ds-sitecore/icon.svg' alt> ${foundName
+                    .replace(/View$/, '')
+                    .split(/(?=[A-Z])/)
+                    .join(' ')}`;
 
-              // move to the next child node
-              child = child.nextSibling;
+                  let close = document.createElement('span');
+                  close.classList.add('dsSC__item-close');
+                  el.appendChild(close);
+                  close.addEventListener('click', (ev) => {
+                    ev.preventDefault();
+                    ev.target.parentElement.style.display = 'none';
+                  });
+
+                  el.onmouseover = (ev) => {
+                    const target = document.querySelector(`.${ev.target.getAttribute('dsSCId')}`);
+                    target && target.classList.add('dsSC__target');
+                  };
+                  el.onmouseout = (ev) => {
+                    const target = document.querySelector(`.${ev.target.getAttribute('dsSCId')}`);
+                    target && target.classList.remove('dsSC__target');
+                  };
+
+                  dsSC.appendChild(el);
+
+                  nextElShouldBeMarked = false;
+                  previousTopPos = childTopPos;
+                  found.push({ name: foundName, id: foundId, top: childTopPos });
+                }
+                outputComments(child);
+                break;
+
+              // if the node is a comment node, output its value
+              case Node.COMMENT_NODE:
+                checkForId(child);
+                break;
             }
-          };
 
-          const init = () => {
-            reset();
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => outputComments(document.body), 200);
-          };
+            // move to the next child node
+            child = child.nextSibling;
+          }
+        };
 
-          addStyle();
-          addToggle();
-          getSitecoreUrl();
+        const init = () => {
+          reset();
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(() => outputComments(document.body), 200);
+        };
 
-          init();
-          window.onresize = () => init();
-          window.onscroll = () => init();
-        },
-      });
+        addStyle();
+        addToggle();
+        getSitecoreUrl();
+
+        init();
+        window.onresize = () => init();
+        window.onscroll = () => init();
+      },
     });
-  };
+  });
+};
 
+export function setupShowComponents() {
   const showComponentsCta = document.querySelector('#showSitecoreComponents');
   handleEnableCta(showComponentsCta);
 
   showComponentsCta.addEventListener('click', () => {
     handleShowComponents();
   });
-})();
+}

@@ -29,3 +29,9 @@ chrome.runtime.onInstalled.addListener((reason) => {
     chrome.storage.sync.set({ showSettings });
   }
 });
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.action === 'callMyFunction') {
+    sendResponse({ result: 'Function executed' });
+  }
+});

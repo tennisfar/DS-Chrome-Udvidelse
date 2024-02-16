@@ -1,27 +1,34 @@
 {
   "manifest_version": 3,
   "name": "DS Chrome Udvidelse",
-  "version": "0.26",
+  "version": "0.27",
   "description": "En Chrome/Edge udvidelse for DS",
-  "permissions": ["activeTab", "scripting", "storage", "tabs"],
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
   "background": {
-    "service_worker": "src/background.js"
+    "service_worker": "dist/background.js"
   },
-  "host_permissions": ["*://*.danskespil.dk/*"],
+  "host_permissions": [
+    "*://*.danskespil.dk/*"
+  ],
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": [
+        "<all_urls>"
+      ],
+      "type": "module",
       "js": [
-        "src/Content.js",
-        "src/DsFindDictionary.js",
-        "src/GitHubCreateBranch.js",
-        "src/SitecoreLayoutImprovements.js"
+        "dist/content.js"
       ],
       "run_at": "document_end"
     }
   ],
   "action": {
-    "default_popup": "src/popup.html",
+    "default_popup": "dist/popup.html",
     "default_icon": {
       "16": "assets/icon-16.png",
       "32": "assets/icon-32.png",

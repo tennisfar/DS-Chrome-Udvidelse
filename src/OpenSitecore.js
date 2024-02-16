@@ -1,4 +1,4 @@
-(() => {
+export function setupOpenSitecore() {
   document.querySelector('#openSitecoreProdDli').addEventListener('click', () => {
     window.open(
       'https://editdli.danskespil.dk/sitecore/shell/Applications/Content%20Editor.aspx?sc_bw=1&fo=/sitecore/content/DanskeSpil/home'
@@ -34,4 +34,4 @@
       'https://web.trunk.danskespil.dk/sitecore/shell/Applications/Content%20Editor.aspx?sc_bw=1&fo=/sitecore/content/DanskeSpil/home'
     );
   });
-})();
+}
