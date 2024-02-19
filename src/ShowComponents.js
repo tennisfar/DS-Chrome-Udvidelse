@@ -49,8 +49,8 @@ const handleShowComponents = () => {
           font-family: 'Montserrat', 'Open Sans', Helvetica, Arial, sans-serif;
           background: black;
           color: white;
-          padding: 0 8px 0 7px;
-          box-shadow: 0 0 0px 1px #585858;
+          padding: 0 8px 0 10px;
+          box-shadow: 0 0 0 1px #585858;
           border-radius: 3px;
           text-decoration: none;
           line-height: 15px;
@@ -126,26 +126,11 @@ const handleShowComponents = () => {
           document.body.appendChild(style);
         };
 
-        const addToggle = () => {
-          let dsSCToggle = document.querySelector('.dsSC__toggle');
-          if (!!dsSCToggle) dsSCToggle.remove();
-          dsSCToggle = document.createElement('div');
-          dsSCToggle.classList.add('dsSC__toggle');
-          dsSCToggle.innerHTML = `<img src='https://raw.githubusercontent.com/mikelothar/assets/master/ds-sitecore/icon.svg' alt>`;
-          dsSCToggle.onclick = () => {
-            const target = document.querySelector('#dsSC');
-            target && target.classList.toggle('dsSC--hidden');
-          };
-          document.body.appendChild(dsSCToggle);
-        };
-
         const reset = () => {
           dsSCExist = document.querySelector('#dsSC');
           if (!!dsSCExist) dsSCExist.remove();
           dsSC = document.createElement('div');
           dsSC.id = 'dsSC';
-          previousTopPos = 0;
-          previousLeftPos = 0;
         };
 
         const getSitecoreUrl = () => {
@@ -218,7 +203,7 @@ const handleShowComponents = () => {
 
                   el.style.top = childTopPos + 'px';
                   el.style.left = childLeftPos + 'px';
-                  el.innerHTML = `<img src='https://raw.githubusercontent.com/mikelothar/assets/master/ds-sitecore/icon.svg' alt> ${foundName
+                  el.innerHTML = `${foundName
                     .replace(/View$/, '')
                     .split(/(?=[A-Z])/)
                     .join(' ')}`;
@@ -243,7 +228,6 @@ const handleShowComponents = () => {
                   dsSC.appendChild(el);
 
                   nextElShouldBeMarked = false;
-                  previousTopPos = childTopPos;
                   found.push({ name: foundName, id: foundId, top: childTopPos });
                 }
                 outputComments(child);
@@ -267,7 +251,6 @@ const handleShowComponents = () => {
         };
 
         addStyle();
-        addToggle();
         getSitecoreUrl();
 
         init();
