@@ -22,20 +22,9 @@
       ],
       "type": "module",
       "js": [
-        "dist/content.js",
-        "dist/pages.js"
+        "dist/content.js"
       ],
       "run_at": "document_end"
-    }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "dist/makeBranchName.js"
-      ],
-      "matches": [
-        "<all_urls>"
-      ]
     }
   ],
   "action": {

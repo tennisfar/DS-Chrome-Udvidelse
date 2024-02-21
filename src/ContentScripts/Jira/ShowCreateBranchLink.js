@@ -1,6 +1,6 @@
 import makeBranchName from '../../MakeBranchName';
 
-const isJiraTaskIU = () => location.host.includes('jira.danskespil.dk') && location.pathname.startsWith('/browse/IU-');
+const isPageAJiraTaskIUPage = () => location.host.includes('jira.danskespil.dk') && location.pathname.startsWith('/browse/IU-');
 
 const createCTA = () => {
   const branchName = makeBranchName();
@@ -20,7 +20,7 @@ const createCTA = () => {
 }
 
 export function showCreateBranchLink() {
-  if (isJiraTaskIU()) {
+  if (isPageAJiraTaskIUPage()) {
     createCTA();
   }
 }

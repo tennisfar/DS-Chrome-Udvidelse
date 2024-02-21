@@ -1,10 +1,12 @@
 import { setupDsFindDictionary } from './DsFindDictionary';
-import { setupGithubCreateBranch } from './GitHubCreateBranch';
+import { setupGithubCreateBranch } from './ContentScripts/Github/GitHubCreateBranch';
 import { setupSitecoreLayoutImprovements } from './SitecoreLayoutImprovements';
+import { showCreateBranchLink } from './ContentScripts/Jira/ShowCreateBranchLink';
 
 setupDsFindDictionary();
 setupGithubCreateBranch();
 setupSitecoreLayoutImprovements();
+showCreateBranchLink();
 
 if (location.host.endsWith('danskespil.dk')) {
   document.addEventListener('keydown', function (event) {
