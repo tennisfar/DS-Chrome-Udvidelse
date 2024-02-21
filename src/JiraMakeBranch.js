@@ -2,8 +2,10 @@ import { getCurrentTab } from './ChromeTools';
 
 const shouldShowMakeJiraBranchCTA = async () => {
   const tab = await getCurrentTab();
-  return !!(tab?.url?.includes('jira.danskespil.dk') &&
-    (tab?.url?.includes('selectedIssue=') || tab?.url?.includes('/browse/')));
+  return !!(
+    tab?.url?.includes('jira.danskespil.dk') &&
+    (tab?.url?.includes('selectedIssue=') || tab?.url?.includes('/browse/'))
+  );
 };
 
 const handleMakeJiraBranch = async () => {
