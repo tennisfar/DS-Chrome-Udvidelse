@@ -143,6 +143,7 @@ const handleShowComponents = () => {
             'plus-abonnement',
             'quick',
             'spil-sammen',
+            'roed-konto',
           ];
           const host = window.location.host
             .replace(/danskespil\.dk/, '')
