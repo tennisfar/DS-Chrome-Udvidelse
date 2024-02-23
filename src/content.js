@@ -2,13 +2,13 @@ import { setupDsFindDictionary } from './DsFindDictionary';
 import { setupGithubCreateBranch } from './ContentScripts/Github/GitHubCreateBranch';
 import { setupSitecoreLayoutImprovements } from './SitecoreLayoutImprovements';
 import { showCreateBranchLink } from './ContentScripts/Jira/ShowCreateBranchLink';
-import hideJunk from './ContentScripts/Jira/HideJunk';
+import addFocusOnTaskCTA from './ContentScripts/Jira/FocusOnTask';
 
 setupDsFindDictionary();
 setupGithubCreateBranch();
 setupSitecoreLayoutImprovements();
 showCreateBranchLink();
-hideJunk();
+addFocusOnTaskCTA();
 
 if (location.host.endsWith('danskespil.dk')) {
   document.addEventListener('keydown', function (event) {

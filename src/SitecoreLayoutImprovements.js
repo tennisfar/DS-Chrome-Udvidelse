@@ -368,7 +368,11 @@ const initialize = () => {
       document.addEventListener('click', () => setTimeout(addFavorites, 500));
     }
 
-    if (!!decodeURIComponent(location.pathname).match(/\/sitecore\/shell\/applications\/content[- ]manager\/default\.aspx/i)) {
+    if (
+      !!decodeURIComponent(location.pathname).match(
+        /\/sitecore\/shell\/applications\/content[- ]manager\/default\.aspx/i
+      )
+    ) {
       setInterval(addImageDirectUrl, 500);
     }
   }
