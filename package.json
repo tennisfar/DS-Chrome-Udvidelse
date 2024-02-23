@@ -1,6 +1,6 @@
 {
   "name": "ds-chrome-extension",
-  "version": "0.29",
+  "version": "0.30",
   "description": "En Chrome/Edge udvidelse for DS.",
   "main": "index.js",
   "scripts": {

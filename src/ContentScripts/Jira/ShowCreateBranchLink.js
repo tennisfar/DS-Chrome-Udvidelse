@@ -1,9 +1,10 @@
 import makeBranchName from '../../MakeBranchName';
 
-const isPageAJiraTaskIUPage = () =>
-  location.host.includes('jira.danskespil.dk') && location.pathname.startsWith('/browse/IU-');
+const isPageAJiraTask = () => location.host.includes('jira.danskespil.dk') && location.pathname.startsWith('/browse/');
+const isJiraIU = () => location.pathname.includes('/IU-');
+const isJiraFOR = () => location.pathname.includes('/FOR-');
 
-const createCTA = () => {
+const createCTA = (repo) => {
   const branchName = makeBranchName();
   if (!branchName) return;
 
@@ -14,14 +15,14 @@ const createCTA = () => {
   cta.classList.add('aui-button');
   cta.innerText = 'Create Branch';
   cta.addEventListener('click', () => {
-    window.open('https://github.com/ds-itu-frontend-service/danskespil-website/branches?newBranch=' + branchName);
+    window.open(`https://github.com/ds-itu-frontend-service/${repo}/branches?newBranch=${branchName}`);
   });
   newCtaContainer.appendChild(cta);
   toolBar.appendChild(newCtaContainer);
 };
 
 export function showCreateBranchLink() {
-  if (isPageAJiraTaskIUPage()) {
-    createCTA();
+  if (isPageAJiraTask() && (isJiraIU() || isJiraFOR())) {
+    createCTA('danskespil-website');
   }
 }
