@@ -353,7 +353,7 @@ const addImageDirectUrl = () => {
 
 const initialize = () => {
   if (location.host.endsWith('danskespil.dk')) {
-    if (location.pathname.toLowerCase() === '/sitecore/shell/applications/content%20editor.aspx') {
+    if (!!decodeURIComponent(location.pathname).match(/\/sitecore\/shell\/applications\/content[- ]editor\.aspx/i)) {
       stretchColumn();
       scrollToItem();
       addBookmark();
@@ -368,7 +368,7 @@ const initialize = () => {
       document.addEventListener('click', () => setTimeout(addFavorites, 500));
     }
 
-    if (location.pathname.toLowerCase() === '/sitecore/shell/applications/content%20manager/default.aspx') {
+    if (!!decodeURIComponent(location.pathname).match(/\/sitecore\/shell\/applications\/content[- ]manager\/default\.aspx/i)) {
       setInterval(addImageDirectUrl, 500);
     }
   }
