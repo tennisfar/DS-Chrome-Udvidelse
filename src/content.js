@@ -1,4 +1,5 @@
-import { setupDsFindDictionary } from './DsFindDictionary';
+import { setupDsFindDictionary } from './ContentScripts/DS/DsFindDictionary';
+import { setupDsSitecoreDeveloperError } from './ContentScripts/DS/SitecoreDeveloperError';
 import { setupGithubCreateBranch } from './ContentScripts/Github/GitHubCreateBranch';
 import { setupSitecoreLayoutImprovements } from './SitecoreLayoutImprovements';
 import { showCreateBranchLink } from './ContentScripts/Jira/ShowCreateBranchLink';
@@ -9,6 +10,7 @@ setupGithubCreateBranch();
 setupSitecoreLayoutImprovements();
 showCreateBranchLink();
 addFocusOnTaskCTA();
+setupDsSitecoreDeveloperError();
 
 if (location.host.endsWith('danskespil.dk')) {
   document.addEventListener('keydown', function (event) {
