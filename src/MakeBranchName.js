@@ -15,6 +15,8 @@ function makeBranchName() {
   type = type.trim().toLowerCase();
   type = type.replace(/story/, 'feature');
 
+  if (type === 'bug') type = 'bugfix';
+
   issue = issue.innerText.trim();
 
   summary = summary.innerText

@@ -12,6 +12,10 @@ const createCTA = (repo) => {
 
 export function showCreateBranchLink() {
   if (isPageAJiraTask() && (isJiraIU() || isJiraFOR() || isJiraCW())) {
-    createCTA('danskespil-website');
+
+    const isTivoli = document.getElementById('customfield_13101-val')?.innerText.toLowerCase() === 'tivoli' || false;
+    let repo = isTivoli ? 'tivolicasino-website' : 'danskespil-website';
+    
+    createCTA(repo);
   }
 }
