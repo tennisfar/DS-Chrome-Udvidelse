@@ -26,7 +26,6 @@ const hasAllAsyncElements = async () => {
 };
 
 const toggleElementsVisibility = async () => {
-
   asyncSelectorsToHide.map((selector) => hide(selector));
 
   hide('#linkingmodule');

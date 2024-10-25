@@ -1,6 +1,6 @@
 // const handleDelete = (elName, showButtons) => {
 //   const el = document.getElementById(elName);
-// 
+//
 // if (!el) return;
 //
 // if (!showSettings) {
@@ -37,64 +37,64 @@
 
 // export function setupSettings() {
 //   chrome.storage.sync.get('showSettings', ({ showSettings }) => {
-    // const content = document.querySelector('.is-ancestor');
-    // content.classList.toggle('show-settings', showSettings);
+// const content = document.querySelector('.is-ancestor');
+// content.classList.toggle('show-settings', showSettings);
 
-    // if (showSettings) {
-    //   const disabledButtons = document.querySelectorAll('.button[disabled]');
-    //   disabledButtons.forEach((button) => {
-    //     button.removeAttribute('disabled');
-    //   });
-    // }
+// if (showSettings) {
+//   const disabledButtons = document.querySelectorAll('.button[disabled]');
+//   disabledButtons.forEach((button) => {
+//     button.removeAttribute('disabled');
+//   });
+// }
 
-    // document.getElementById('settingsCta').addEventListener('click', () => {
-    //   showSettings = !showSettings;
-    //   chrome.storage.sync.set({ showSettings });
-    //   location.reload();
-    // });
+// document.getElementById('settingsCta').addEventListener('click', () => {
+//   showSettings = !showSettings;
+//   chrome.storage.sync.set({ showSettings });
+//   location.reload();
+// });
 
-    // chrome.storage.sync.get('showButtons', ({ showButtons }) => {
-      // const danskeSpilButtons = ['showSitecoreComponents', 'openInSitecore', 'openInExperienceEditor'];
-      // danskeSpilButtons.forEach((button) => handleDelete(button, showSettings, showButtons));
-      // const hideDanskeSpilButtons = handleHideBlock(danskeSpilButtons, 'danskeSpilButtons', showSettings, showButtons);
+// chrome.storage.sync.get('showButtons', ({ showButtons }) => {
+// const danskeSpilButtons = ['showSitecoreComponents', 'openInSitecore', 'openInExperienceEditor'];
+// danskeSpilButtons.forEach((button) => handleDelete(button, showSettings, showButtons));
+// const hideDanskeSpilButtons = handleHideBlock(danskeSpilButtons, 'danskeSpilButtons', showSettings, showButtons);
 
-      // const jiraButtons = [
-      //   'openMyJira',
-      //   'openJiraBoardDli',
-      //   'openJiraBoardDlo',
-      //   'openJiraBoardFOR',
-      //   'makeJiraDli',
-      //   'makeJiraDlo',
-      //   'makeJiraFOR',
-      //   'makeJira',
-      // ];
-      // jiraButtons.forEach((button) => handleDelete(button, showSettings, showButtons));
-      // const hideJiraButtons = handleHideBlock(jiraButtons, 'jiraButtons', showSettings, showButtons);
+// const jiraButtons = [
+//   'openMyJira',
+//   'openJiraBoardDli',
+//   'openJiraBoardDlo',
+//   'openJiraBoardFOR',
+//   'makeJiraDli',
+//   'makeJiraDlo',
+//   'makeJiraFOR',
+//   'makeJira',
+// ];
+// jiraButtons.forEach((button) => handleDelete(button, showSettings, showButtons));
+// const hideJiraButtons = handleHideBlock(jiraButtons, 'jiraButtons', showSettings, showButtons);
 
-      // const sitecoreButtons = [
-      //   'openSitecoreProdDli',
-      //   'openSitecoreProdDlo',
-      //   'openSitecoreTown21Dli',
-      //   'openSitecoreTown21Dlo',
-      //   'openSitecoreDev',
-      //   'openSitecoreTrunk',
-      // ];
-      // sitecoreButtons.forEach((button) => handleDelete(button, showSettings, showButtons));
-      // const hideSitecoreButtons = handleHideBlock(sitecoreButtons, 'sitecoreButtons', showSettings, showButtons);
-      //
-      // const hiddenBlocks = [hideDanskeSpilButtons, hideJiraButtons, hideSitecoreButtons].filter(
-      //   (value) => value === true
-      // ).length;
-      //
-      // const container = document.getElementById('container');
-      // if (hiddenBlocks === 0) {
-      //   container.style.width = '769px';
-      // } else {
-      //   container.style.width = '300px';
-      // }
+// const sitecoreButtons = [
+//   'openSitecoreProdDli',
+//   'openSitecoreProdDlo',
+//   'openSitecoreTown21Dli',
+//   'openSitecoreTown21Dlo',
+//   'openSitecoreDev',
+//   'openSitecoreTrunk',
+// ];
+// sitecoreButtons.forEach((button) => handleDelete(button, showSettings, showButtons));
+// const hideSitecoreButtons = handleHideBlock(sitecoreButtons, 'sitecoreButtons', showSettings, showButtons);
+//
+// const hiddenBlocks = [hideDanskeSpilButtons, hideJiraButtons, hideSitecoreButtons].filter(
+//   (value) => value === true
+// ).length;
+//
+// const container = document.getElementById('container');
+// if (hiddenBlocks === 0) {
+//   container.style.width = '769px';
+// } else {
+//   container.style.width = '300px';
+// }
 
-      // const debug = document.querySelector('#debug');
-      // debug.innerHTML = JSON.stringify(hiddenBlocks, null, 2);
-    // });
-  // });
+// const debug = document.querySelector('#debug');
+// debug.innerHTML = JSON.stringify(hiddenBlocks, null, 2);
+// });
+// });
 // }

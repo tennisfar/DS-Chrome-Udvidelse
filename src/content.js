@@ -1,3 +1,4 @@
+import { setupAddGrid } from './ContentScripts/DS/AddGrid';
 import { setupDsFindDictionary } from './ContentScripts/DS/DsFindDictionary';
 import { setupDsSitecoreDeveloperError } from './ContentScripts/DS/SitecoreDeveloperError';
 import { setupGithubCreateBranch } from './ContentScripts/Github/GitHubCreateBranch';
@@ -5,6 +6,7 @@ import { setupSitecoreLayoutImprovements } from './SitecoreLayoutImprovements';
 import { showCreateBranchLink } from './ContentScripts/Jira/ShowCreateBranchLink';
 import addFocusOnTaskCTA from './ContentScripts/Jira/FocusOnTask';
 
+setupAddGrid();
 setupDsFindDictionary();
 setupGithubCreateBranch();
 setupSitecoreLayoutImprovements();
