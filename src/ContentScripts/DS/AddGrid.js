@@ -91,7 +91,7 @@ function createGridStyleElement() {
     top: -2px;
     left: 50%;
     transform: translateX(-50%);
-    width: max(calc(1024px - 4rem), min(calc(100vw - 4rem), 1120px));
+    width: max(var(--grid-min-width, calc(1024px - 2*var(--grid-margin, 2rem))), min(calc(100vw - 2*var(--grid-margin, 2rem)), var(--grid-max-width, 112rem)));
     height: 105vh;
     opacity: 0.5;
     box-shadow: inset 0 0 0 1px rgba(255,0,0,0.5);
