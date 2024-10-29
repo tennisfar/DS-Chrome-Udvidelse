@@ -4,6 +4,9 @@ En Chrome/Edge udvidelse for DS.
 
 ![](assets/installguide.jpg)
 
+## Version 0.37.2
+Knappen "Åben siden i Sitecore" virker nu igen.
+
 ## Version 0.37.1
 Til at vise Grid beregnes CSS værdierne nu ud fra CSS variabler.
 

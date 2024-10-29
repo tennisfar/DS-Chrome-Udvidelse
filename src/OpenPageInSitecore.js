@@ -22,7 +22,6 @@ const handleOpenPageInSitecore = async () => {
       let sitecoreId = sessionStorage.getItem('page_id');
       let lo = window.location.origin;
       let cl = document.body.classList;
-      let isDlo = cl.contains('dlo');
       let isDli = cl.contains('dli');
       let reg = isDli ? 'dli' : 'dlo';
 
@@ -30,6 +29,12 @@ const handleOpenPageInSitecore = async () => {
       if (lo.includes('//da')) lo = lo.replace('//dan', '//edit' + reg + '.dan');
 
       lo += '/sitecore/shell/Applications/Content%20Editor.aspx?sc_bw=1';
+
+      if (!sitecoreId) {
+        let dataLayerScript = document.querySelectorAll('script[type="text/javascript"]');
+        dataLayerScript = Array.from(dataLayerScript).find((script) => script?.innerText?.includes('dataLayer'));
+        sitecoreId = dataLayerScript?.innerText?.split('id')?.[1]?.split(',')?.[0]?.replace(/[^a-z0-9\-{}]/gmi, '');
+      }
 
       window.open(`${lo}&fo=${sitecoreId}`, '_blank');
     },
