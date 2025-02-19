@@ -14,7 +14,7 @@ export function showCreateBranchLink() {
   if (isPageAJiraTask() && (isJiraIU() || isJiraFOR() || isJiraCW() || isJiraDLOA())) {
     const isTivoli = document.getElementById('customfield_13101-val')?.innerText.toLowerCase() === 'tivoli' || false;
 
-    const isDDK = document.getElementById('labels-162978-value')?.innerText.includes('DDK') || false;
+    const isDDK = document.getElementById('wrap-labels')?.innerText.includes('DDK') || false;
     
     if (isDDK) {
       createCTA('klasselotteriet-website');
