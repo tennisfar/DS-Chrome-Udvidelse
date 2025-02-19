@@ -4,6 +4,9 @@ En Chrome/Edge udvidelse for DS.
 
 ![](assets/installguide.jpg)
 
+## Version 0.38
+Der kan nu laves branches for DLOA sager.
+
 ## Version 0.37.2
 Knappen "Åben siden i Sitecore" virker nu igen.
 
