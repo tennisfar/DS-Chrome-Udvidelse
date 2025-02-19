@@ -128,7 +128,7 @@ const toggleGrid = (showGrid) => {
 };
 
 export function setupAddGrid() {
-  if (location.host.endsWith('danskespil.dk') && !location.pathname.startsWith('/sitecore/')) {
+  if ((location.host.endsWith('danskespil.dk') || location.host.startsWith('localhost')) && !location.pathname.startsWith('/sitecore/')) {
     let showGrid = false;
 
     document.addEventListener('keydown', (event) => {
