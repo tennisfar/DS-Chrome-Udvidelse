@@ -1,5 +1,5 @@
 import makeBranchName from '../../MakeBranchName';
-import { isPageAJiraTask, isJiraIU, isJiraFOR, createCTAInToolbar, isJiraCW } from './Jira';
+import { isPageAJiraTask, isJiraIU, isJiraFOR, createCTAInToolbar, isJiraCW, isJiraDLOA} from './Jira';
 
 const createCTA = (repo) => {
   const branchName = makeBranchName();
@@ -11,7 +11,7 @@ const createCTA = (repo) => {
 };
 
 export function showCreateBranchLink() {
-  if (isPageAJiraTask() && (isJiraIU() || isJiraFOR() || isJiraCW())) {
+  if (isPageAJiraTask() && (isJiraIU() || isJiraFOR() || isJiraCW() || isJiraDLOA())) {
     const isTivoli = document.getElementById('customfield_13101-val')?.innerText.toLowerCase() === 'tivoli' || false;
     let repo = isTivoli ? 'tivolicasino-website' : 'danskespil-website';
 
