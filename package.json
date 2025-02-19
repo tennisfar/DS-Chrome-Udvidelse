@@ -1,9 +1,10 @@
 {
   "name": "ds-chrome-extension",
-  "version": "0.37.2",
+  "version": "0.38",
   "description": "En Chrome/Edge udvidelse for DS.",
   "main": "index.js",
   "scripts": {
+    "dev": "npm start",
     "start": "npm run update-version && webpack --mode development --watch",
     "build": "npm run update-version && webpack --mode production",
     "update-version": "node update-manifest-version.js"
