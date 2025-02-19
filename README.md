@@ -44,6 +44,12 @@ Du har nu succesfuldt installeret DS Chrome Udvidelsen i Developer Mode.
 
 ## Opdateringer
 
+### Version 1.0.1
+En DLOA sag der tilhører Klasselotteriet laver nu en branch i det rigtige repository.
+
+### Version 1.0
+Release!
+
 ### Version 0.39
 Fjernet "Focus" knappen fra Jirasager.
 
