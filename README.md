@@ -44,6 +44,9 @@ Du har nu succesfuldt installeret DS Chrome Udvidelsen i Developer Mode.
 
 ## Opdateringer
 
+### Version 1.1
+Tilføjet nødvendig dist mappe til at kunne installere udvidelsen.
+
 ### Version 1.0.2
 En DLOA sag der tilhører Klasselotteriet laver nu (med sikkerhed) en branch i det rigtige repository.
 

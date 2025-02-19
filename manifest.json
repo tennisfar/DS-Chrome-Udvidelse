@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "DS Chrome Udvidelse",
-  "version": "1.0.2",
+  "version": "1.1",
   "description": "En Chrome/Edge udvidelse for DS",
   "permissions": [
     "activeTab",
