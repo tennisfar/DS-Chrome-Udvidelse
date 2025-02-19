@@ -4,6 +4,9 @@ En Chrome/Edge udvidelse for DS.
 
 ![](assets/installguide.jpg)
 
+## Version 0.39
+Fjernet "Focus" knappen fra Jirasager.
+
 ## Version 0.38
 Der kan nu laves branches for DLOA sager.
 
