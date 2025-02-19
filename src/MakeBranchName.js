@@ -14,6 +14,7 @@ function makeBranchName() {
   type = type.innerText || type.title;
   type = type.trim().toLowerCase();
   type = type.replace(/story/, 'feature');
+  type = type.replace(/epic/, 'feature');
 
   if (type === 'bug') type = 'bugfix';
 
@@ -24,6 +25,9 @@ function makeBranchName() {
     .replace(/[^a-z ]/g, '-')
     .replace(/ /g, '-')
     .replace(/--+/g, '-');
+  
+  // replace leading dash
+  summary = summary.replace(/^-/, '');
 
   return `${type}/${issue}-${summary}`.slice(0, 50).replace(/-$/, '');
 }
