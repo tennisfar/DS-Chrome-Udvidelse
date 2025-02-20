@@ -1,16 +1,16 @@
-import { setupAddGrid } from './ContentScripts/DS/AddGrid';
 import { setupDsFindDictionary } from './ContentScripts/DS/DsFindDictionary';
 import { setupDsSitecoreDeveloperError } from './ContentScripts/DS/SitecoreDeveloperError';
 import { setupGithubCreateBranch } from './ContentScripts/Github/GitHubCreateBranch';
 import { setupSitecoreLayoutImprovements } from './SitecoreLayoutImprovements';
 import { showCreateBranchLink } from './ContentScripts/Jira/ShowCreateBranchLink';
+import { setupLayoutGrid } from './ContentScripts/DS/LayoutGrid';
 
-setupAddGrid();
 setupDsFindDictionary();
-setupGithubCreateBranch();
+void setupGithubCreateBranch();
 setupSitecoreLayoutImprovements();
 showCreateBranchLink();
 setupDsSitecoreDeveloperError();
+void setupLayoutGrid();
 
 if (location.host.endsWith('danskespil.dk')) {
   document.addEventListener('keydown', function (event) {

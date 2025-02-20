@@ -44,6 +44,9 @@ Du har nu succesfuldt installeret DS Chrome Udvidelsen i Developer Mode.
 
 ## Opdateringer
 
+### Version 1.2
+Sidens grid kan nu vises eller skjules fra popup menuen.
+
 ### Version 1.1
 Tilføjet nødvendig dist mappe til at kunne installere udvidelsen.
 
