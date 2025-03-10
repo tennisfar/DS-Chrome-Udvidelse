@@ -27,6 +27,7 @@ export const isJiraIU = () => location.pathname.includes('/IU-');
 export const isJiraFOR = () => location.pathname.includes('/FOR-');
 export const isJiraCW = () => location.pathname.includes('/CW-');
 export const isJiraDLOA = () => location.pathname.includes('/DLOA-');
+export const isJiraDLIA = () => location.pathname.includes('/DLIA-');
 
 export const createCTAInToolbar = async (label, fn) => {
   const toolBar = await getToolbar();

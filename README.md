@@ -44,6 +44,9 @@ Du har nu succesfuldt installeret DS Chrome Udvidelsen i Developer Mode.
 
 ## Opdateringer
 
+### Version 1.3
+Der kan nu laves branches for DLIA sager.
+
 ### Version 1.2
 Sidens grid kan nu vises eller skjules fra popup menuen.
 
