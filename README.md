@@ -44,7 +44,7 @@ Du har nu succesfuldt installeret DS Chrome Udvidelsen i Developer Mode.
 
 ## Opdateringer
 
-### Version 1.5
+### Version 1.5.2
 Tilføjet knap i Jira til at få et muligt branch navn baseret på Jira nøgle og titel.
 
 ### Version 1.4
