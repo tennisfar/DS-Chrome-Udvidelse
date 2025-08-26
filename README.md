@@ -44,6 +44,9 @@ Du har nu succesfuldt installeret DS Chrome Udvidelsen i Developer Mode.
 
 ## Opdateringer
 
+### Version 1.4
+Klub Lotto komponenter åbner nu i DLO Sitecore.
+
 ### Version 1.3
 Der kan nu laves branches for DLIA sager.
 

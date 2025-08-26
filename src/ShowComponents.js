@@ -139,6 +139,7 @@ const handleShowComponents = () => {
             'eurojackpot',
             'keno',
             'lotto',
+            'klublotto',
             'vikinglotto',
             'plus-abonnement',
             'quick',
