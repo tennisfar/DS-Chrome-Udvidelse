@@ -39,10 +39,10 @@ const handleOpenPageInExperienceEditor = async () => {
 export function setupOpenPageInExperienceEditor() {
   document.addEventListener('DOMContentLoaded', function () {
     const cta = document.querySelector('#openInExperienceEditor');
-    handleEnableCta(cta);
+    void handleEnableCta(cta);
 
     cta.addEventListener('click', () => {
-      handleOpenPageInExperienceEditor();
+      void handleOpenPageInExperienceEditor();
     });
   });
 }

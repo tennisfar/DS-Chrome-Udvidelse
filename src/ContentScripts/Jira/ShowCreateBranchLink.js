@@ -5,8 +5,12 @@ const createCTA = (repo) => {
   const branchName = makeBranchName();
   if (!branchName) return;
 
-  createCTAInToolbar('Create Branch', () => {
+  void createCTAInToolbar('Create Branch', () => {
     window.open(`https://github.com/ds-itu-frontend-service/${repo}/branches?newBranch=${branchName}`);
+  });
+
+  void createCTAInToolbar('Create Branch name', () => {
+    alert(`${branchName}`);
   });
 };
 

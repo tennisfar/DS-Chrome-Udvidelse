@@ -265,7 +265,7 @@ const handleShowComponents = () => {
 
 export function setupShowComponents() {
   const showComponentsCta = document.querySelector('#showSitecoreComponents');
-  handleEnableCta(showComponentsCta);
+  void handleEnableCta(showComponentsCta);
 
   showComponentsCta.addEventListener('click', () => {
     handleShowComponents();
