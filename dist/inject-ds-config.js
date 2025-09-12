@@ -1,0 +1,1 @@
+window.DS&&window.DS.Config&&window.postMessage({type:"DS_CONFIG",config:window.DS.Config},"*");

@@ -1,12 +1,13 @@
 {
   "name": "ds-chrome-extension",
-  "version": "1.6",
+  "version": "1.7",
   "description": "En Chrome/Edge udvidelse for DS.",
   "main": "index.js",
   "scripts": {
     "dev": "npm start",
     "start": "npm run update-version && webpack --mode development --watch",
-    "build": "npm run update-version && webpack --mode production",
+    "build": "webpack --mode production",
+    "build2": "npm run update-version && webpack --mode production",
     "update-version": "node update-manifest-version.js"
   },
   "keywords": [],

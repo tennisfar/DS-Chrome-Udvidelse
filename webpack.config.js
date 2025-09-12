@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
@@ -47,5 +48,13 @@ module.exports = {
         { from: 'src/popup/index.html', to: 'popup.html' }, // Adjust source and destination paths as needed
       ],
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'src/ContentScripts/DS/inject-ds-config.js',
+          to: 'inject-ds-config.js'
+        }
+      ]
+    })
   ],
 };

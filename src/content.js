@@ -4,7 +4,9 @@ import { setupGithubCreateBranch } from './ContentScripts/Github/GitHubCreateBra
 import { setupSitecoreLayoutImprovements } from './SitecoreLayoutImprovements';
 import { showCreateBranchLink } from './ContentScripts/Jira/ShowCreateBranchLink';
 import { setupLayoutGrid } from './ContentScripts/DS/LayoutGrid';
+import { setupDsDirectLogin } from "./ContentScripts/DS/DirectLogIn";
 
+setupDsDirectLogin();
 setupDsFindDictionary();
 void setupGithubCreateBranch();
 setupSitecoreLayoutImprovements();
