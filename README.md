@@ -45,7 +45,7 @@ Du har nu succesfuldt installeret DS Chrome Udvidelsen i Developer Mode.
 ## Opdateringer
 
 ### Version 1.7
-På lokalmiljøet, ved klik på loginknappen, ledes du normalt til MitID loginsiden når du forsøger at logge ind. Da denne ikke er aktuel på lokalmiljøet, springes dette step over, og du føres i stedet direkte til brugernavnslogin.
+På lokal- og townmiljøer, ved klik på loginknappen, ledes du normalt til MitID loginsiden når du forsøger at logge ind. Da denne ikke er aktuel på disse miljøer, springes dette step over, og du føres i stedet direkte til brugernavnslogin.
 
 ### Version 1.6
 Automatisk spejling af login på DLO-town til local.danskespil.dk (DLOSITECORE_JOSSO_SESSIONID)
