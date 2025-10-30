@@ -1,6 +1,7 @@
 let favorites = [];
 let showGrid = false;
 let fastLogin = true;
+let dsConfig = null;
 
 chrome.runtime.onInstalled.addListener((reason) => {
   if (reason === chrome.runtime.OnInstalledReason.INSTALL) {
@@ -11,6 +12,7 @@ chrome.runtime.onInstalled.addListener((reason) => {
 
   chrome.storage.sync.set({ showGrid });
   chrome.storage.sync.set({ fastLogin });
+  chrome.storage.sync.set({ dsConfig });
 });
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
