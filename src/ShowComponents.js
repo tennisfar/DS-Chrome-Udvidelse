@@ -140,6 +140,7 @@ const handleShowComponents = () => {
             'keno',
             'lotto',
             'klublotto',
+            'lotteri-og-skrab',
             'vikinglotto',
             'plus-abonnement',
             'quick',
