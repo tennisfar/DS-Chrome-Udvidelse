@@ -2,12 +2,14 @@ let favorites = [];
 let showGrid = false;
 let fastLogin = true;
 let dsConfig = null;
+let klasselotterietCustomerNumbers = ['151561', '201261', '201262'];
 
 chrome.runtime.onInstalled.addListener((reason) => {
   if (reason === chrome.runtime.OnInstalledReason.INSTALL) {
     chrome.storage.sync.set({ favorites });
+    chrome.storage.sync.set({ klasselotterietCustomerNumbers });
   }
-  
+
   if (reason === chrome.runtime.OnInstalledReason.UPDATE) {}
 
   chrome.storage.sync.set({ showGrid });
@@ -21,30 +23,30 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   }
 });
 
-const TARGET_COOKIE = "DLOSITECORE_JOSSO_SESSIONID";
-const LOCAL_HOST = "local.danskespil.dk";
+const TARGET_COOKIE = 'DLOSITECORE_JOSSO_SESSIONID';
+const LOCAL_HOST = 'local.danskespil.dk';
 
 function mirrorToLocal(cookie) {
   const params = {
     url: `https://${LOCAL_HOST}/`,
     name: TARGET_COOKIE,
     value: cookie.value,
-    path: cookie.path || "/",
+    path: cookie.path || '/',
     secure: cookie.secure ?? true,
     httpOnly: cookie.httpOnly ?? true,
-    sameSite: cookie.sameSite || "no_restriction"
+    sameSite: cookie.sameSite || 'no_restriction'
   };
 
   // Preserve expiry if it's a persistent cookie; omit for session cookies.
-  if (typeof cookie.expirationDate === "number") {
+  if (typeof cookie.expirationDate === 'number') {
     params.expirationDate = cookie.expirationDate;
   }
 
   chrome.cookies.set(params, (setCookie) => {
     if (chrome.runtime.lastError) {
-      console.warn("Setting local cookie failed:", chrome.runtime.lastError);
+      console.warn('Setting local cookie failed:', chrome.runtime.lastError);
     } else {
-      console.log("Mirrored cookie to local:", setCookie);
+      console.log('Mirrored cookie to local:', setCookie);
     }
   });
 }
@@ -61,7 +63,7 @@ chrome.cookies.onChanged.addListener((details) => {
   if (cookie.domain === LOCAL_HOST) return;
 
   // Only consider cookies belonging to townXX.danskespil.dk
-  if (!(cookie.domain.startsWith("town") && cookie.domain.endsWith(".danskespil.dk"))) return;
+  if (!(cookie.domain.startsWith('town') && cookie.domain.endsWith('.danskespil.dk'))) return;
 
   mirrorToLocal(cookie);
 });

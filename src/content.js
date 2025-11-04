@@ -1,6 +1,7 @@
 import { setupDsFindDictionary } from './ContentScripts/DS/DsFindDictionary';
 import { setupDsSitecoreDeveloperError } from './ContentScripts/DS/SitecoreDeveloperError';
 import { setupGithubCreateBranch } from './ContentScripts/Github/GitHubCreateBranch';
+import { setupKlasselotterietLogIn } from './ContentScripts/Klasselotteriet/LogIn';
 import { setupSitecoreLayoutImprovements } from './SitecoreLayoutImprovements';
 import { showCreateBranchLink } from './ContentScripts/Jira/ShowCreateBranchLink';
 import { setupLayoutGrid } from './ContentScripts/DS/LayoutGrid';
@@ -13,6 +14,7 @@ setupSitecoreLayoutImprovements();
 showCreateBranchLink();
 setupDsSitecoreDeveloperError();
 void setupLayoutGrid();
+void setupKlasselotterietLogIn();
 
 if (location.host.endsWith('danskespil.dk')) {
   document.addEventListener('keydown', function (event) {

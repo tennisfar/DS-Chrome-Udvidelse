@@ -44,6 +44,9 @@ Du har nu succesfuldt installeret DS Chrome Udvidelsen i Developer Mode.
 
 ## Opdateringer
 
+### Version 1.9
+Tilføjet mulighed for at gemme kundenumre på Klasselotteriets loginside, så man ikke skal indtaste dem hver gang.
+
 ### Version 1.8
 Sitecore layoutændringer virker nu også for Klasselotteriet.
 
