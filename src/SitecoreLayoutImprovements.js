@@ -352,7 +352,11 @@ const addImageDirectUrl = () => {
 };
 
 const initialize = () => {
-  if (location.host.endsWith('danskespil.dk')) {
+  if (
+    location.host.endsWith('danskespil.dk')
+    || location.host.endsWith('klasselotteriet.local')
+    || location.host.endsWith('klasselotteriet.dk')
+  ) {
     if (!!decodeURIComponent(location.pathname).match(/\/sitecore\/shell\/applications\/content[- ]editor\.aspx/i)) {
       stretchColumn();
       scrollToItem();
