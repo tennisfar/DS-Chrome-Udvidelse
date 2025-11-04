@@ -2,6 +2,25 @@ const isKlasselotterietLoginPage = () => {
   return window.location.host === 'klasselotteriet.local' && window.location.pathname === '/login/aftalenummer';
 };
 
+const addLinkToConfluencePage = () => {
+  const form = document.querySelector('form');
+  if (!form) return;
+
+  const link = document.createElement('a');
+  link.href = 'https://viden.danskespil.dk/pages/viewpage.action?spaceKey=DLOART&title=Testdata';
+  link.textContent = 'Se flere numre på viden.danskespil.dk';
+  link.target = '_blank';
+  link.style.display = 'block';
+  link.style.marginTop = '10px';
+  link.style.color = 'black';
+  link.style.textDecoration = 'underline';
+
+  setTimeout(() => {
+    // Make sure it is added after other elements
+    form.appendChild(link);
+  }, 20);
+};
+
 const addNewNumbersForm = () => {
   chrome.storage.sync.get('klasselotterietCustomerNumbers', ({ klasselotterietCustomerNumbers }) => {
     const form = document.createElement('form');
@@ -117,6 +136,7 @@ export const setupKlasselotterietLogIn = async () => {
 
           addNumbers();
           addNewNumbersForm();
+          addLinkToConfluencePage();
         });
       }
     }, 500);
