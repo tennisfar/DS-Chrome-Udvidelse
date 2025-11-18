@@ -109,6 +109,10 @@ const addNumbers = () => {
           inputCustomerNumber.value = number;
           inputAgreementNumber.value = '111111111';
         }
+        
+        // Rearrange the buttons to put the clicked one first
+        const updated = [number, ...klasselotterietCustomerNumbers.filter(n => n !== number)];
+        chrome.storage.sync.set({ klasselotterietCustomerNumbers: updated });
       });
 
       container.appendChild(btn);
