@@ -1,5 +1,9 @@
 const isKlasselotterietLoginPage = () => {
-  return window.location.host === 'klasselotteriet.local' && window.location.pathname === '/login/aftalenummer';
+  return window.location.host === 'klasselotteriet.local' && window.location.pathname.startsWith('/login');
+};
+
+const isKlasselotterietLoginNumberPage = () => {
+  return window.location.pathname.endsWith('/login/aftalenummer');
 };
 
 const addLinkToConfluencePage = () => {
@@ -37,16 +41,16 @@ const addNewNumbersForm = () => {
     btn.textContent = 'Gem numre';
 
     btn.addEventListener('click', () => {
-        const value = input.value;
-        if (!value) return;
+      const value = input.value;
+      if (!value) return;
 
-        const numbers = value.split(',').map(num => num.trim()).filter(num => num);
+      const numbers = value.split(',').map(num => num.trim()).filter(num => num);
 
-        chrome.storage.sync.set({ klasselotterietCustomerNumbers: Array.from(new Set([...klasselotterietCustomerNumbers, ...numbers])) }, () => {
-            location.reload();
-          }
-        );
+      chrome.storage.sync.set({ klasselotterietCustomerNumbers: Array.from(new Set([...klasselotterietCustomerNumbers, ...numbers])) }, () => {
+        location.reload();
       }
+      );
+    }
     );
 
     form.appendChild(input);
@@ -58,6 +62,21 @@ const addNewNumbersForm = () => {
     }
   });
 }
+
+const fillOutFormWithNumber = (number) => {
+  const inputCustomerNumber = document.querySelector('form [formcontrolname="customerNumber"]');
+  const inputAgreementNumber = document.querySelector('form [formcontrolname="agreementNumber"]');
+  if (inputCustomerNumber && inputAgreementNumber) {
+    inputCustomerNumber.value = number;
+    inputAgreementNumber.value = '111111111';
+
+    // Simulate user interaction for Angular
+    ['focus', 'input', 'blur'].forEach(eventType => {
+      inputCustomerNumber.dispatchEvent(new Event(eventType, { bubbles: true }));
+      inputAgreementNumber.dispatchEvent(new Event(eventType, { bubbles: true }));
+    });
+  }
+};
 
 const addNumbers = () => {
   const form = document.querySelector('form');
@@ -103,13 +122,9 @@ const addNumbers = () => {
       btn.addEventListener('click', (e) => {
         // Only trigger if not clicking the "x"
         if (e.target === del) return;
-        const inputCustomerNumber = document.querySelector('form [formcontrolname="customerNumber"]');
-        const inputAgreementNumber = document.querySelector('form [formcontrolname="agreementNumber"]');
-        if (inputCustomerNumber && inputAgreementNumber) {
-          inputCustomerNumber.value = number;
-          inputAgreementNumber.value = '111111111';
-        }
-        
+
+        fillOutFormWithNumber(number);
+
         // Rearrange the buttons to put the clicked one first
         const updated = [number, ...klasselotterietCustomerNumbers.filter(n => n !== number)];
         chrome.storage.sync.set({ klasselotterietCustomerNumbers: updated });
@@ -128,15 +143,13 @@ export const setupKlasselotterietLogIn = async () => {
 
   window.addEventListener('load', function () {
     const int = setInterval(() => {
-      const inputCustomerNumber = document.querySelector('form [formcontrolname="customerNumber"]');
-      const inputAgreementNumber = document.querySelector('form [formcontrolname="agreementNumber"]');
 
-      if (inputCustomerNumber && inputAgreementNumber) {
+      if (isKlasselotterietLoginNumberPage()) {
         clearInterval(int);
 
         chrome.storage.sync.get('klasselotterietCustomerNumbers', ({ klasselotterietCustomerNumbers }) => {
-          inputCustomerNumber.value = klasselotterietCustomerNumbers[0] || '151561';
-          inputAgreementNumber.value = '111111111';
+          const number = klasselotterietCustomerNumbers[0] || '151561';
+          fillOutFormWithNumber(number);
 
           addNumbers();
           addNewNumbersForm();
