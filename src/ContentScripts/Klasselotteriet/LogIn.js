@@ -1,5 +1,5 @@
 const isKlasselotterietLoginPage = () => {
-  return window.location.host === 'klasselotteriet.local' && window.location.pathname.startsWith('/login');
+  return window.location.host.includes('klasselotteriet.') && window.location.pathname.startsWith('/login');
 };
 
 const isKlasselotterietLoginNumberPage = () => {
