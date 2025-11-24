@@ -1,50 +1,19 @@
 # DS Chrome Udvidelse
 
-## Installationsguide (uden Git)
+En Chrome udvidelse med værktøjer til Danske Spil relaterede sites og Jira.
 
-1. **Download Udvidelsen**:
-    - Download udvidelsens kildekode som en ZIP-fil fra repository.
-    - Udpak ZIP-filen til en mappe på din computer.
+## Hurtig Start
 
-2. **Indlæs Udvidelsen i Chrome**:
-    - Åbn Chrome og gå til `chrome://extensions/`.
-    - Aktiver "Developer mode" ved at slå kontakten i øverste højre hjørne.
-    - Klik på knappen "Load unpacked".
-    - Vælg den udpakkede mappe.
-
-3. **Verificer Installation**:
-    - Udvidelsen skulle nu vises på listen over installerede udvidelser.
-    - Sørg for, at den er aktiveret og fungerer som forventet.
-
-Du har nu succesfuldt installeret DS Chrome Udvidelsen i Developer Mode.
-
-## Installationsguide (med Git)
-
-1. **Klon Repositoriet**:
-    - Åbn en terminal og kør følgende kommando for at klone repositoriet:
-      ```sh
-      git clone <repository-url>
-      ```
-    - Naviger til den klonede mappe:
-      ```sh
-      cd ds-chrome-extension
-      ```
-
-2. **Indlæs Udvidelsen i Chrome**:
-    - Åbn Chrome og gå til `chrome://extensions/`.
-    - Aktiver "Developer mode" ved at slå kontakten i øverste højre hjørne.
-    - Klik på knappen "Load unpacked".
-    - Vælg den klonede mappe.
-
-3. **Verificer Installation**:
-    - Udvidelsen skulle nu vises på listen over installerede udvidelser.
-    - Sørg for, at den er aktiveret og fungerer som forventet.
-
-Du har nu succesfuldt installeret DS Chrome Udvidelsen i Developer Mode.
+1. Download eller klon koden.
+2. Åbn `chrome://extensions/`.
+3. Slå Developer mode til.
+4. Vælg `Load unpacked`.
+5. Peg på projektmappen.
+6. Bekræft at udvidelsen er aktiv.
 
 ## Opdateringer
 
-### Version 1.9.1
+### Version 1.9.4
 Tilføjet mulighed for at gemme kundenumre på Klasselotteriets loginside, så man ikke skal indtaste dem hver gang.
 
 ### Version 1.8
