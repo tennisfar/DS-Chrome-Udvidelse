@@ -13,6 +13,9 @@ En Chrome udvidelse med værktøjer til Danske Spil relaterede sites og Jira.
 
 ## Opdateringer
 
+### Version 1.10
+Knappen "Vis komponenter på siden" virker nu også på Klasselotteriet.
+
 ### Version 1.9.4
 Tilføjet mulighed for at gemme kundenumre på Klasselotteriets loginside, så man ikke skal indtaste dem hver gang.
 

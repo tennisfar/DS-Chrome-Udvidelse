@@ -3,7 +3,7 @@ import { getCurrentTab } from './ChromeTools';
 const handleEnableCta = async (cta) => {
   const tab = await getCurrentTab();
 
-  if (tab?.url?.includes('danskespil.dk') && !tab?.url?.includes('/sitecore/')) {
+  if ((tab?.url?.includes('danskespil.dk') || tab?.url?.includes('klasselotteriet.')) && !tab?.url?.includes('/sitecore/')) {
     cta.removeAttribute('disabled');
   }
 };
@@ -134,27 +134,44 @@ const handleShowComponents = () => {
         };
 
         const getSitecoreUrl = () => {
-          const dlo = [
-            'alt-eller-intet',
-            'eurojackpot',
-            'keno',
-            'lotto',
-            'klublotto',
-            'lotteri-og-skrab',
-            'vikinglotto',
-            'plus-abonnement',
-            'quick',
-            'spil-sammen',
-            'roed-konto',
-          ];
-          const host = window.location.host
+          if (location.host.includes('klasselotteriet.')) {
+            let host = window.location.host;
+            
+            if(location.host.startsWith('town')) {
+              host = host.replace('.klasselotteriet', 'edit.klasselotteriet');
+            }
+
+            if(location.host === ('klasselotteriet.dk')) {
+              host = host.replace('klasselotteriet', 'edit.klasselotteriet');
+            }
+            
+            sitecoreUrl = `https://${host}/sitecore/shell/Applications/Content%20Editor.aspx?sc_bw=1&fo=`;
+            return;
+          }
+
+          if (location.host.includes('danskespil.dk')) {
+            const dlo = [
+              'alt-eller-intet',
+              'eurojackpot',
+              'keno',
+              'lotto',
+              'klublotto',
+              'lotteri-og-skrab',
+              'vikinglotto',
+              'plus-abonnement',
+              'quick',
+              'spil-sammen',
+              'roed-konto',
+            ];
+            const host = window.location.host
             .replace(/danskespil\.dk/, '')
             .toLowerCase()
             .replace(/\.$/, '');
-          const region = window.location.pathname.replace(/^\//, '').replace(/\/.*$/, '').toLowerCase();
-          let dliOrDlo = dlo.indexOf(region) > -1 ? 'editdlo' : 'editdli';
-          dliOrDlo = host === 'web.develop' || host === 'web.trunk' ? '' : dliOrDlo;
-          sitecoreUrl = `https://${host}${dliOrDlo}.danskespil.dk/sitecore/shell/Applications/Content%20Editor.aspx?sc_bw=1&fo=`;
+            const region = window.location.pathname.replace(/^\//, '').replace(/\/.*$/, '').toLowerCase();
+            let dliOrDlo = dlo.indexOf(region) > -1 ? 'editdlo' : 'editdli';
+            dliOrDlo = host === 'web.develop' || host === 'web.trunk' ? '' : dliOrDlo;
+            sitecoreUrl = `https://${host}${dliOrDlo}.danskespil.dk/sitecore/shell/Applications/Content%20Editor.aspx?sc_bw=1&fo=`;
+          }
         };
 
         const checkForId = (child) => {
@@ -180,7 +197,7 @@ const handleShowComponents = () => {
 
             // determine the type of the node
             switch (child.nodeType) {
-              // if the node is an element node, recurse into it
+            // if the node is an element node, recurse into it
               case Node.ELEMENT_NODE:
                 if (nextElShouldBeMarked) {
                   let childTopPos = child.getBoundingClientRect().top + 10 + window.scrollY;
@@ -207,9 +224,9 @@ const handleShowComponents = () => {
                   el.style.top = childTopPos + 'px';
                   el.style.left = childLeftPos + 'px';
                   el.innerHTML = `${foundName
-                    .replace(/View$/, '')
-                    .split(/(?=[A-Z])/)
-                    .join(' ')}`;
+                  .replace(/View$/, '')
+                  .split(/(?=[A-Z])/)
+                  .join(' ')}`;
 
                   let close = document.createElement('span');
                   close.classList.add('dsSC__item-close');
@@ -236,7 +253,7 @@ const handleShowComponents = () => {
                 outputComments(child);
                 break;
 
-              // if the node is a comment node, output its value
+            // if the node is a comment node, output its value
               case Node.COMMENT_NODE:
                 checkForId(child);
                 break;
