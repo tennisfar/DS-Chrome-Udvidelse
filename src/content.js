@@ -6,8 +6,10 @@ import { setupSitecoreLayoutImprovements } from './SitecoreLayoutImprovements';
 import { showCreateBranchLink } from './ContentScripts/Jira/ShowCreateBranchLink';
 import { setupLayoutGrid } from './ContentScripts/DS/LayoutGrid';
 import { setupDsFastLogin } from "./ContentScripts/DS/FastLogIn";
+import { setupKlFastLogin } from './ContentScripts/Klasselotteriet/FastLogIn';
 
 setupDsFastLogin();
+setupKlFastLogin();
 setupDsFindDictionary();
 void setupGithubCreateBranch();
 setupSitecoreLayoutImprovements();
