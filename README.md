@@ -13,6 +13,11 @@ En Chrome udvidelse med værktøjer til Danske Spil relaterede sites og Jira.
 
 ## Opdateringer
 
+### Version 1.12
+Gemte kundenumre på Klasselotteriets loginside virker nu også på små skærme, uden at dette ødelægger layoutet.
+
+Klasselotteriets tidligere gemte kundenumre overskrives ikke længere ved opdatering af udvidelsen.
+
 ### Version 1.11
 På Klasselotteriets lokal- og townmiljøer, ved klik på loginknappen, ledes du normalt til MitID loginsiden når du forsøger at logge ind. Da denne ikke er aktuel på disse miljøer, springes dette step over, og du føres i stedet direkte til brugernavnslogin.
 
