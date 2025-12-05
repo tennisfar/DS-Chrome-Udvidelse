@@ -7,6 +7,7 @@ let klasselotterietCustomerNumbers = ['151561', '201261', '201262', '814814'];
 chrome.runtime.onInstalled.addListener((reason) => {
   if (reason === chrome.runtime.OnInstalledReason.INSTALL) {
     chrome.storage.sync.set({ favorites });
+    chrome.storage.sync.set({ klasselotterietCustomerNumbers });
   }
 
   if (reason === chrome.runtime.OnInstalledReason.UPDATE) {}
@@ -14,7 +15,6 @@ chrome.runtime.onInstalled.addListener((reason) => {
   chrome.storage.sync.set({ showGrid });
   chrome.storage.sync.set({ fastLogin });
   chrome.storage.sync.set({ dsConfig });
-  chrome.storage.sync.set({ klasselotterietCustomerNumbers });
 });
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
