@@ -1,6 +1,6 @@
 let favorites = [];
 let showGrid = false;
-let fastLogin = true;
+let fastLogin = false;
 let dsConfig = null;
 let klasselotterietCustomerNumbers = ['151561', '201261', '201262', '814814'];
 

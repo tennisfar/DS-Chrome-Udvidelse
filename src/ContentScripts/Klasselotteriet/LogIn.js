@@ -6,27 +6,112 @@ const isKlasselotterietLoginNumberPage = () => {
   return window.location.pathname.endsWith('/login/aftalenummer');
 };
 
+const setRootVars = (bottom, left) => {
+  if (!bottom) {
+    bottom = 50;
+    left = (window.innerWidth / 2 - 235);
+  }
+  const r = document.querySelector(':root');
+
+  bottom = Math.max(bottom, 0);
+  left = Math.max(left, 0);
+
+  r.style.setProperty('--dsce-drag-bottom', bottom + 'px');
+  r.style.setProperty('--dsce-drag-left', left + 'px');
+};
+
+
+const dragElement = (elmnt) => {
+  const header = document.getElementById(elmnt.id + "header");
+  if (!header) return;
+
+  let startX = 0, startY = 0;
+
+  header.onmousedown = (e) => {
+    e.preventDefault();
+    startX = e.clientX;
+    startY = e.clientY;
+    document.onmouseup = stopDrag;
+    document.onmousemove = onDrag;
+  };
+
+  function onDrag(e) {
+    e.preventDefault();
+
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    startX = e.clientX;
+    startY = e.clientY;
+
+    // Read current CSS variable values instead of getBoundingClientRect
+    const rootStyle = getComputedStyle(document.documentElement);
+    const currentBottomPx = parseFloat(rootStyle.getPropertyValue('--dsce-drag-bottom')) || 0;
+    const currentLeftPx = parseFloat(rootStyle.getPropertyValue('--dsce-drag-left')) || 0;
+
+    const nextLeftPx = currentLeftPx + dx;
+    const nextBottomPx = currentBottomPx - dy;
+
+    setRootVars(nextBottomPx, nextLeftPx);
+  }
+
+  function stopDrag() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+};
+
 const makeUserNumbersForm = () => {
   const loginEl = document.querySelector('.username-login');
   if (!loginEl) return;
 
   const form = document.createElement('form');
   form.className = 'dsce__form';
+  form.id = 'mydiv';
+
+  const formDrag = document.createElement('div');
+  formDrag.classList.add('dsce__add-numbers-form-drag');
+  formDrag.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-grip-horizontal-icon lucide-grip-horizontal"><circle cx="12" cy="9" r="1"/><circle cx="19" cy="9" r="1"/><circle cx="5" cy="9" r="1"/><circle cx="12" cy="15" r="1"/><circle cx="19" cy="15" r="1"/><circle cx="5" cy="15" r="1"/></svg>';
+  formDrag.id = 'mydivheader';
+  form.appendChild(formDrag);
 
   addNumbers(form);
   addNewNumbersForm(form);
   addLinkToConfluencePage(form);
   addNumbersStyle(form);
   loginEl.appendChild(form);
+
+  setRootVars();
+  dragElement(form);
+
+  window.addEventListener('resize', () => setRootVars());
 };
 
 const addNumbersStyle = (form) => {
   const style = document.createElement('style');
   style.innerHTML = `
       .dsce__form {
+        position: fixed;
+        z-index: 1000;
+        width: 100%;
+        max-width: 470px;
+        background: #ffffff;
+        padding: 8px 16px 16px;
+        bottom: var(--dsce-drag-bottom);
+        left: var(--dsce-drag-left);
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
         display: flex;
         flex-direction: column;
         gap: 10px;
+      }
+      .dsce__add-numbers-form-drag {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        cursor: move;
+      }
+      .dsce__add-numbers-form-drag:hover {
+        background: #f0f0f0;
       }
       .dsce__user-numbers-container {
         display: flex;
@@ -35,7 +120,7 @@ const addNumbersStyle = (form) => {
       }
       .dsce__user-numbers-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       }
       .dsce__delete-cta {
         display: flex;
@@ -132,6 +217,7 @@ const addNewNumbersForm = (parent) => {
     input.className = 'dsce__input-number';
     input.type = 'text';
     input.placeholder = 'fx. 123456';
+    input.maxLength = 8;
 
     const btn = document.createElement('button');
     btn.type = 'button';

@@ -13,6 +13,11 @@ En Chrome udvidelse med værktøjer til Danske Spil relaterede sites og Jira.
 
 ## Opdateringer
 
+### Version 1.13
+Fjernet ekstra styling på Log Ind knappen, når Fast Login er slået til.
+
+Slået Fast Login helt fra i produktion.
+
 ### Version 1.12
 Gemte kundenumre på Klasselotteriets loginside virker nu også på små skærme, uden at dette ødelægger layoutet.
 
