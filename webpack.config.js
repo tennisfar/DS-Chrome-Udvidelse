@@ -2,8 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = {
-  mode: process.env.NODE_ENV || 'development',
+module.exports = (env, argv) => ({
   entry: {
     background: './src/background.js',
     content: './src/content.js',
@@ -14,7 +13,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js', // This will output popup.js, background.js, etc.
   },
-  devtool: 'inline-source-map', // Useful for debugging, adjust as needed
+  devtool: argv.mode === 'production' ? false : 'inline-source-map',
   module: {
     rules: [
       {
@@ -57,4 +56,4 @@ module.exports = {
       ]
     })
   ],
-};
+});
