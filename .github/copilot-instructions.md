@@ -7,12 +7,11 @@ Chrome MV3 extension for Danske Spil internal tooling (Sitecore, Jira, Klasselot
 ```bash
 npm run dev        # webpack watch + version sync (development)
 npm run build      # production bundle + version sync
-npm run buildfast  # production bundle WITHOUT version sync (skip when bumping version)
 ```
 
 Load `dist/` as an **unpacked extension** in `chrome://extensions`. There are no automated tests.
 
-> **Version bump**: change `.version` in `package.json` only — never edit `manifest.json` by hand. `update-manifest-version.js` syncs it automatically on `dev`/`build`. `buildfast` skips this step.
+> **Version bump**: change `.version` in `package.json` only — never edit `manifest.json` by hand. `update-manifest-version.js` syncs it automatically on `dev`/`build`.
 
 ## Architecture
 
@@ -43,7 +42,6 @@ Three webpack entry points:
 
 ## Pitfalls
 
-- `buildfast` skips version sync — only safe when version number doesn't matter.
 - Any new script injected into the page context (like `inject-ds-config.js`) **must** be added to `web_accessible_resources` in `manifest.json`, or it will fail silently.
-- Source maps are embedded in dev bundles only (`inline-source-map`). Prod builds (`build`/`buildfast`) set `devtool: false` — no source maps, smaller output.
+- Source maps are embedded in dev bundles only (`inline-source-map`). Prod builds (`build`) set `devtool: false` — no source maps, smaller output.
 - `chrome.storage.sync` has an 8 KB per-item quota; avoid storing large objects (e.g. `dsConfig`).

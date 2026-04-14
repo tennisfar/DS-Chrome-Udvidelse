@@ -7,7 +7,6 @@
     "dev": "npm start",
     "start": "npm run update-version && webpack --mode development --watch",
     "build": "npm run update-version && webpack --mode production",
-    "buildfast": "webpack --mode production",
     "update-version": "node update-manifest-version.js"
   },
   "keywords": [],
