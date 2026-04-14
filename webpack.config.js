@@ -4,9 +4,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, argv) => ({
   entry: {
-    background: './src/background.js',
-    content: './src/content.js',
-    popup: './src/popup/popup.js', // Your popup script
+    background: './src/Background.js',
+    content: './src/Content.js',
+    popup: './src/Popup/Popup.js', // Your popup script
     // Define other entries if necessary, e.g., background: './src/background.js'
   },
   output: {
@@ -44,7 +44,7 @@ module.exports = (env, argv) => ({
     }),
     new (require('copy-webpack-plugin'))({
       patterns: [
-        { from: 'src/popup/index.html', to: 'popup.html' }, // Adjust source and destination paths as needed
+        { from: 'src/Popup/index.html', to: 'popup.html' }, // Adjust source and destination paths as needed
       ],
     }),
     new CopyWebpackPlugin({
