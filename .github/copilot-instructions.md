@@ -2,6 +2,10 @@
 
 Chrome MV3 extension for Danske Spil internal tooling (Sitecore, Jira, Klasselotteriet). No test suite; all validation is manual in Chrome.
 
+## Workflow
+
+- When asked to **make a plan**, present the plan and stop. Do NOT begin implementation automatically. Wait for explicit confirmation before proceeding.
+
 ## Build & Run
 
 ```bash
