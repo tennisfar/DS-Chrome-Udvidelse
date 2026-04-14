@@ -13,6 +13,9 @@ En Chrome udvidelse med værktøjer til Danske Spil relaterede sites og Jira.
 
 ## Opdateringer
 
+### Version 1.13.1.x
+Dette er en test-release for at verificere at GitHub Actions opretter releases med korrekt beskrivelse fra README.
+
 ### Version 1.13.1
 Rettet en fejl hvor "Hurtig login"-knappen i popup'en stadig kunne klikkes på `https://danskespil.dk/`, selvom den så ud til at være deaktiveret. Knappen er nu korrekt deaktiveret og ikke-klikbar på denne side.
 
