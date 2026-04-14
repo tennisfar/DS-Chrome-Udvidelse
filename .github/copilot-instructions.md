@@ -19,22 +19,22 @@ Three webpack entry points:
 
 | Entry | Output | Context |
 |---|---|---|
-| `src/background.js` | `dist/background.js` | Service worker (no DOM) |
-| `src/content.js` | `dist/content.js` | Injected into every page |
-| `src/popup/popup.js` | `dist/popup.js` | Toolbar popup |
+| `src/Background.js` | `dist/background.js` | Service worker (no DOM) |
+| `src/Content.js` | `dist/content.js` | Injected into every page |
+| `src/Popup/Popup.js` | `dist/popup.js` | Toolbar popup |
 
 `src/ContentScripts/DS/inject-ds-config.js` is **copied verbatim** (not bundled) via `CopyWebpackPlugin` — it must run in the page's own JS context, not the extension sandbox. It is listed in `web_accessible_resources` in `manifest.json`.
 
 ## Adding a Feature
 
 1. Create `src/ContentScripts/<Domain>/<Feature>.js`, export `setup<Feature>()`.
-2. Import and call it in `src/content.js`.
-3. If a popup toggle is needed, export `toggle<Feature>()` and wire it in `src/popup/popup.js`.
-4. **No manifest change needed** — `content.js` already matches `<all_urls>`.
+2. Import and call it in `src/Content.js`.
+3. If a popup toggle is needed, export `toggle<Feature>()` and wire it in `src/Popup/Popup.js`.
+4. **No manifest change needed** — `Content.js` already matches `<all_urls>`.
 
 ## Conventions
 
-- **URL gating is mandatory**: `content.js` runs on every URL. Each feature module must guard with `location.host` / `location.pathname` checks before acting.
+- **URL gating is mandatory**: `Content.js` runs on every URL. Each feature module must guard with `location.host` / `location.pathname` checks before acting.
 - **Naming**: `setup<FeatureName>()` for content init, `toggle<FeatureName>()` for popup toggle controls.
 - **Shared Jira utilities** live in `src/ContentScripts/Jira/Jira.js` — import from there, don't duplicate.
 - **Shared tab utility**: use `getCurrentTab()` from `src/ChromeTools.js`.
