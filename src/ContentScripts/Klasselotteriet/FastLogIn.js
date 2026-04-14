@@ -39,6 +39,8 @@ export const toggleKlFastLogin = () => {
     toggleLabel(fastLoginButton, fastLogin);
 
     fastLoginButton.addEventListener('click', async () => {
+      if (fastLoginButton.hasAttribute('disabled')) return;
+
       fastLogin = !fastLogin;
       chrome.storage.sync.set({ fastLogin });
       toggleLabel(fastLoginButton, fastLogin);
