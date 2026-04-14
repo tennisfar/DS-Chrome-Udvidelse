@@ -1,0 +1,49 @@
+# DS Chrome Udvidelse — Project Guidelines
+
+Chrome MV3 extension for Danske Spil internal tooling (Sitecore, Jira, Klasselotteriet). No test suite; all validation is manual in Chrome.
+
+## Build & Run
+
+```bash
+npm run dev        # webpack watch + version sync (development)
+npm run build      # production bundle + version sync
+npm run buildfast  # production bundle WITHOUT version sync (skip when bumping version)
+```
+
+Load `dist/` as an **unpacked extension** in `chrome://extensions`. There are no automated tests.
+
+> **Version bump**: change `.version` in `package.json` only — never edit `manifest.json` by hand. `update-manifest-version.js` syncs it automatically on `dev`/`build`. `buildfast` skips this step.
+
+## Architecture
+
+Three webpack entry points:
+
+| Entry | Output | Context |
+|---|---|---|
+| `src/background.js` | `dist/background.js` | Service worker (no DOM) |
+| `src/content.js` | `dist/content.js` | Injected into every page |
+| `src/popup/popup.js` | `dist/popup.js` | Toolbar popup |
+
+`src/ContentScripts/DS/inject-ds-config.js` is **copied verbatim** (not bundled) via `CopyWebpackPlugin` — it must run in the page's own JS context, not the extension sandbox. It is listed in `web_accessible_resources` in `manifest.json`.
+
+## Adding a Feature
+
+1. Create `src/ContentScripts/<Domain>/<Feature>.js`, export `setup<Feature>()`.
+2. Import and call it in `src/content.js`.
+3. If a popup toggle is needed, export `toggle<Feature>()` and wire it in `src/popup/popup.js`.
+4. **No manifest change needed** — `content.js` already matches `<all_urls>`.
+
+## Conventions
+
+- **URL gating is mandatory**: `content.js` runs on every URL. Each feature module must guard with `location.host` / `location.pathname` checks before acting.
+- **Naming**: `setup<FeatureName>()` for content init, `toggle<FeatureName>()` for popup toggle controls.
+- **Shared Jira utilities** live in `src/ContentScripts/Jira/Jira.js` — import from there, don't duplicate.
+- **Shared tab utility**: use `getCurrentTab()` from `src/ChromeTools.js`.
+- **Settings** are stored in `chrome.storage.sync`; `src/Settings.js` has shared read/write helpers.
+
+## Pitfalls
+
+- `buildfast` skips version sync — only safe when version number doesn't matter.
+- Any new script injected into the page context (like `inject-ds-config.js`) **must** be added to `web_accessible_resources` in `manifest.json`, or it will fail silently.
+- Source maps are embedded in both dev and prod bundles (`inline-source-map` in `webpack.config.js`) — prod bundles are larger as a result.
+- `chrome.storage.sync` has an 8 KB per-item quota; avoid storing large objects (e.g. `dsConfig`).
