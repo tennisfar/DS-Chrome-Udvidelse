@@ -34,10 +34,10 @@ jobs:
 
       - name: Zip extension
         if: startsWith(github.ref, 'refs/tags/')
-        run: zip -r extension.zip dist/ manifest.json assets/
+        run: zip -r ds-chrome-extension.zip dist/ manifest.json assets/
 
       - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
-        run: gh release create ${{ github.ref_name }} extension.zip --title "Release ${{ github.ref_name }}" --generate-notes
+        run: gh release create ${{ github.ref_name }} ds-chrome-extension.zip --title "Release ${{ github.ref_name }}" --generate-notes
         env:
           GH_TOKEN: ${{ github.token }}
