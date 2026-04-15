@@ -4,7 +4,7 @@ En Chrome udvidelse med værktøjer til Danske Spil relaterede sites og Jira.
 
 ## Hurtig Start
 
-1. [Download](https://github.com/tennisfar/DS-Chrome-Udvidelse/releases/latest) `ds-chrome-extension.zip` fra den seneste release.
+1. [Download `ds-chrome-extension.zip`](https://github.com/tennisfar/DS-Chrome-Udvidelse/releases/latest/download/ds-chrome-extension.zip) fra den seneste release.
 2. Pak zip-filen ud til en mappe på din computer.
 3. Åbn `chrome://extensions/` — eller klik på de tre prikker øverst til højre i Chrome → "Extensions" → "Manage Extensions".
 4. Slå "Developer mode" til (øverst til højre).
