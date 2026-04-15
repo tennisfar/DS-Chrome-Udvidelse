@@ -1,6 +1,6 @@
 # DS Chrome Udvidelse
 
-En Chrome udvidelse med værktøjer til Danske Spil relaterede sites og Jira.
+En Chrome-udvidelse med værktøjer til Danske Spil-relaterede sites og Jira.
 
 ## Hurtig Start
 
@@ -18,7 +18,7 @@ En Chrome udvidelse med værktøjer til Danske Spil relaterede sites og Jira.
 Rettet en fejl hvor "Hurtig login"-knappen i popup'en stadig kunne klikkes på `https://danskespil.dk/`, selvom den så ud til at være deaktiveret. Knappen er nu korrekt deaktiveret og ikke-klikbar på denne side.
 
 ### Version 1.13
-Fjernet ekstra styling på Log Ind knappen, når Fast Login er slået til.
+Fjernet ekstra styling på Log Ind-knappen, når Fast Login er slået til.
 
 Slået Fast Login helt fra i produktion.
 
@@ -28,7 +28,7 @@ Gemte kundenumre på Klasselotteriets loginside virker nu også på små skærme
 Klasselotteriets tidligere gemte kundenumre overskrives ikke længere ved opdatering af udvidelsen.
 
 ### Version 1.11
-På Klasselotteriets lokal- og townmiljøer, ved klik på loginknappen, ledes du normalt til MitID loginsiden når du forsøger at logge ind. Da denne ikke er aktuel på disse miljøer, springes dette step over, og du føres i stedet direkte til brugernavnslogin.
+På Klasselotteriets lokal- og townmiljøer, ved klik på loginknappen, ledes du normalt til MitID-loginsiden når du forsøger at logge ind. Da denne ikke er aktuel på disse miljøer, springes dette step over, og du føres i stedet direkte til brugernavnslogin.
 
 ### Version 1.10
 Knappen "Vis komponenter på siden" virker nu også på Klasselotteriet.
@@ -40,13 +40,13 @@ Tilføjet mulighed for at gemme kundenumre på Klasselotteriets loginside, så m
 Sitecore layoutændringer virker nu også for Klasselotteriet.
 
 ### Version 1.7
-På Danske Spil's lokal- og townmiljøer, ved klik på loginknappen, ledes du normalt til MitID loginsiden når du forsøger at logge ind. Da denne ikke er aktuel på disse miljøer, springes dette step over, og du føres i stedet direkte til brugernavnslogin.
+På Danske Spil's lokal- og townmiljøer, ved klik på loginknappen, ledes du normalt til MitID-loginsiden når du forsøger at logge ind. Da denne ikke er aktuel på disse miljøer, springes dette step over, og du føres i stedet direkte til brugernavnslogin.
 
 ### Version 1.6
 Automatisk spejling af login på DLO-town til local.danskespil.dk (DLOSITECORE_JOSSO_SESSIONID)
 
 ### Version 1.5.2
-Tilføjet knap i Jira til at få et muligt branch navn baseret på Jira nøgle og titel.
+Tilføjet knap i Jira til at få et muligt branchnavn baseret på Jira-nøgle og titel.
 
 ### Version 1.4
 Klub Lotto komponenter åbner nu i DLO Sitecore.
@@ -55,7 +55,7 @@ Klub Lotto komponenter åbner nu i DLO Sitecore.
 Der kan nu laves branches for DLIA sager.
 
 ### Version 1.2
-Sidens grid kan nu vises eller skjules fra popup menuen.
+Sidens grid kan nu vises eller skjules fra popup-menuen.
 
 ### Version 1.1
 Tilføjet nødvendig dist mappe til at kunne installere udvidelsen.
@@ -79,7 +79,7 @@ Der kan nu laves branches for DLOA sager.
 Knappen "Åben siden i Sitecore" virker nu igen.
 
 ### Version 0.37.1
-Til at vise Grid beregnes CSS værdierne nu ud fra CSS variabler.
+Til at vise Grid beregnes CSS-værdierne nu ud fra CSS-variabler.
 
 ### Version 0.37
 Tilføjet mulighed for at se grid'et på Danske Spil ved at trykke CTRL+G.
@@ -91,7 +91,7 @@ Hvis man er på en Tivoli Casino Jira, og vil lave en branch, så laves branchen
 Oprydning, fjernet ubrugte knapper.
 
 ### Version 0.34
-Synliggjort Sitecore modulfejl.
+Synliggjort Sitecore-modulfejl.
 
 ### Version 0.33
 Tilføjet mulighed for at lave branches fra Jira "CW" tasks.
