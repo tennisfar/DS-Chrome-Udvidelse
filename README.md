@@ -10,7 +10,7 @@ En Chrome-udvidelse med værktøjer til Danske Spil-relaterede sites og Jira.
 4. Slå "Developer mode" til (øverst til højre).
 5. Vælg "Load unpacked".
 6. Peg på den udpakkede mappe.
-7. Udvidelsen er nu aktiv — du skulle se et nyt ikon i din Chrome-værktøjslinje.
+7. Udvidelsen er nu aktiv — klik på puslespilsikonet øverst til højre i Chrome, find "DS Chrome Udvidelse" på listen, og klik på nåleikonet ud for den for at pinne den til værktøjslinjen.
 
 ## Opdateringer
 
