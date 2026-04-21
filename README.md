@@ -14,6 +14,9 @@ En Chrome-udvidelse med værktøjer til Danske Spil-relaterede sites og Jira.
 
 ## Opdateringer
 
+### Version 1.14.1
+Rettet en fejl hvor "Skjul .item filer i PR"-filteret ikke blev aktiveret, når man navigerede direkte til fanen "Files changed" fra en anden PR-fane — det virkede kun ved genindlæsning af siden.
+
 ### Version 1.14
 Ny knap i popup'en: "Skjul .item filer i PR". Når den er slået til, filtreres `.item`-filer automatisk væk på GitHub pull request-sider ("Files changed").
 
