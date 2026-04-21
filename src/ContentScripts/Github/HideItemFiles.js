@@ -40,17 +40,28 @@ const isPrFilesPage = () =>
 export const setupGithubHideItemFiles = () => {
   if (location.host !== 'github.com') return;
 
-  const maybeRun = () => {
-    chrome.storage.sync.get('hideItemFiles', ({ hideItemFiles }) => {
-      if (hideItemFiles && isPrFilesPage()) {
+  chrome.storage.sync.get('hideItemFiles', ({ hideItemFiles }) => {
+    if (!hideItemFiles) return;
+
+    let filterButtonWasPresent = false;
+
+    const observer = new MutationObserver(() => {
+      const filterButtonPresent = !!document.querySelector('button:has(svg.octicon-filter)');
+
+      if (isPrFilesPage() && filterButtonPresent && !filterButtonWasPresent) {
         void runItemFilter();
       }
+
+      filterButtonWasPresent = filterButtonPresent;
     });
-  };
 
-  maybeRun();
+    observer.observe(document.body, { childList: true, subtree: true });
 
-  document.addEventListener('turbo:load', maybeRun);
+    // Also run on initial page load if already on the files tab
+    if (isPrFilesPage()) {
+      void runItemFilter();
+    }
+  });
 };
 
 const toggleLabel = (cta, enabled) => {
