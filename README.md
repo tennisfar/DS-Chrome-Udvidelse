@@ -14,6 +14,9 @@ En Chrome-udvidelse med værktøjer til Danske Spil-relaterede sites og Jira.
 
 ## Opdateringer
 
+### Version 1.14
+Ny knap i popup'en: "Skjul .item filer i PR". Når den er slået til, filtreres `.item`-filer automatisk væk på GitHub pull request-sider ("Files changed"). Eventuelle gamle filtre i URL'en ryddes automatisk, når knappen er slået fra.
+
 ### Version 1.13.1
 Rettet en fejl hvor "Hurtig login"-knappen i popup'en stadig kunne klikkes på `https://danskespil.dk/`, selvom den så ud til at være deaktiveret. Knappen er nu korrekt deaktiveret og ikke-klikbar på denne side.
 

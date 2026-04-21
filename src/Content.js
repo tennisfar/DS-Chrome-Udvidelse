@@ -1,6 +1,7 @@
 import { setupDsFindDictionary } from './ContentScripts/DS/DsFindDictionary';
 import { setupDsSitecoreDeveloperError } from './ContentScripts/DS/SitecoreDeveloperError';
 import { setupGithubCreateBranch } from './ContentScripts/Github/GitHubCreateBranch';
+import { setupGithubHideItemFiles } from './ContentScripts/Github/HideItemFiles';
 import { setupKlasselotterietLogIn } from './ContentScripts/Klasselotteriet/LogIn';
 import { setupSitecoreLayoutImprovements } from './SitecoreLayoutImprovements';
 import { showCreateBranchLink } from './ContentScripts/Jira/ShowCreateBranchLink';
@@ -12,6 +13,7 @@ setupDsFastLogin();
 setupKlFastLogin();
 setupDsFindDictionary();
 void setupGithubCreateBranch();
+setupGithubHideItemFiles();
 setupSitecoreLayoutImprovements();
 showCreateBranchLink();
 setupDsSitecoreDeveloperError();
