@@ -63,7 +63,7 @@ const injectButton = () => {
     setFieldValue('#firstName', 'Niels');
     setFieldValue('#middleName', '');
     setFieldValue('#LastName', 'Holm');
-    setFieldValue('#Password', 'Abc@1234');
+    setFieldValue('#Password', 'Test1234');
 
     const cprInput = document.querySelector('#cpr');
     if (!cprInput) return;

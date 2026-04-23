@@ -39,7 +39,7 @@ jobs:
         run: npm run build
 
       - name: Package dist as zip
-        run: zip -r ds-chrome-extension.zip manifest.json dist/ assets/
+        run: zip -r ds-chrome-extension.zip dist/
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
