@@ -8,6 +8,7 @@ import { showCreateBranchLink } from './ContentScripts/Jira/ShowCreateBranchLink
 import { setupLayoutGrid } from './ContentScripts/DS/LayoutGrid';
 import { setupDsFastLogin } from "./ContentScripts/DS/FastLogIn";
 import { setupKlFastLogin } from './ContentScripts/Klasselotteriet/FastLogIn';
+import { setupCprGenerator } from './ContentScripts/MitIdSimulator/CprGenerator';
 
 setupDsFastLogin();
 setupKlFastLogin();
@@ -19,6 +20,7 @@ showCreateBranchLink();
 setupDsSitecoreDeveloperError();
 void setupLayoutGrid();
 void setupKlasselotterietLogIn();
+setupCprGenerator();
 
 if (location.host.endsWith('danskespil.dk')) {
   document.addEventListener('keydown', function (event) {
