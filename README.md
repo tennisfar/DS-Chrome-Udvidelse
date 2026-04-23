@@ -15,7 +15,7 @@ En Chrome-udvidelse med værktøjer til Danske Spil-relaterede sites og Jira.
 ## Opdateringer
 
 ### Version 1.15
-På MitID Simulator-siden udfyldes testformularen nu automatisk ved sideindlæsning med faste testværdier og et tilfældigt gyldigt CPR-nummer. En "Generer CPR"-knap giver mulighed for at generere et nyt CPR-nummer hvis ønsket.
+På MitID Simulator-siden udfyldes testformularen nu med faste testværdier og et tilfældigt gyldigt CPR-nummer. En "Generer CPR"-knap giver mulighed for at generere et nyt CPR-nummer hvis ønsket.
 
 ### Version 1.14.1
 Rettet en fejl hvor "Skjul .item filer i PR"-filteret ikke blev aktiveret, når man navigerede direkte til fanen "Files changed" fra en anden PR-fane — det virkede kun ved genindlæsning af siden.
