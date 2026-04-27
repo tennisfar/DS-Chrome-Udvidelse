@@ -3,31 +3,11 @@ description: "Use when releasing, bumping the version, tagging a release, or pre
 ---
 # Release Process
 
-## Steps (in order)
+Use the **Release Agent** (`.github/agents/release.agent.md`) for all release work — it has the full step-by-step process, version format rules, and README conventions built in.
 
-1. **Bump version** — edit `.version` in `package.json` only. Never touch `manifest.json` directly; `update-manifest-version.js` syncs it automatically on `dev`/`build`.
-
-2. **Add README entry** — add a new `### Version X.Y.Z` section under `## Opdateringer`. Follow the existing style: plain prose in Danish, button labels in plain quotes (not bold), no trailing period on single-sentence entries.
-
-3. **Build** — run `npm run build` (or confirm `npm run dev` is running so the version sync has fired).
-
-4. The user handles all Git operations themselves. Suggest the following commands but do not run them:
-   ```bash
-   git add -A
-   git commit -m "<short description> (vX.Y.Z)"
-   git tag vX.Y.Z
-   git push && git push origin vX.Y.Z
-   ```
-
-## Version numbering
-
-- **Patch** (X.Y.**Z**): bug fixes only
-- **Minor** (X.**Y**.0): new features
-- **Major** (**X**.0.0): breaking or architectural changes
-
-## README conventions
-
-- Section header: `### Version X.Y.Z`
-- Button/feature names: `"Like this"` (plain quotes, not **bold**)
-- Language: Danish
-- Keep entries concise — one paragraph per version is enough
+If the Release Agent is not available, the key rules are:
+- Bump `.version` in `package.json` only — never edit `manifest.json` directly.
+- Version format: use `X.Y` (not `X.Y.0`); only add a patch digit for actual fixes (e.g. `1.15.1`).
+- README entry under `## Opdateringer`: Danish prose, `"quoted"` feature names, no trailing period on single-sentence entries.
+- Run `npm run build` after bumping.
+- Do **not** run Git commands — only suggest them to the user.
