@@ -14,6 +14,9 @@ En Chrome-udvidelse med værktøjer til Danske Spil-relaterede sites og Jira.
 
 ## Opdateringer
 
+### Version 1.17.1
+Fjernet automatisk udfyldning af login-formularen på Klasselotteriet
+
 ### Version 1.17
 Standard-brugernavn på MitID Simulator gemmes nu på tværs af sessioner. Adgangskodefeltet på trin 1 vises nu som fritekst, så værdien er synlig. "Ny bruger"-togglen er som standard slået til. Popup'en er redesignet med tydelige farvesektioner: "Ny bruger" og "Hurtig-login" i orange, "Vis layout grid" i mørkeblå. Der er tilføjet en "Opret identitet"-knap i MitID-sektionen.
 
