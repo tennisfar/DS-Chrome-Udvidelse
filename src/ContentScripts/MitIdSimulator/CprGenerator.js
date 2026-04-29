@@ -55,7 +55,9 @@ const fillCpr = (cprInput) => {
     cprInput.value = cpr;
     cprInput.dispatchEvent(new Event('input', { bubbles: true }));
     cprInput.dispatchEvent(new Event('change', { bubbles: true }));
-    setFieldValue('#Username', `NielsHolm${cpr}`);
+    const username = `NielsHolm${cpr}`;
+    setFieldValue('#Username', username);
+    setFieldValue('#adminEmail', `${username}@spam.danskespil.dk`);
 };
 
 const injectButton = () => {
@@ -80,6 +82,18 @@ const injectButton = () => {
     button.addEventListener('click', () => fillCpr(cprInput));
 
     cprInput.insertAdjacentElement('afterend', button);
+
+    const createIdentityButton = document.querySelector('button[type="submit"].button-primary');
+    if (createIdentityButton) {
+        createIdentityButton.addEventListener('click', () => {
+            const cpr = cprInput.value;
+            const username = document.querySelector('#Username')?.value;
+            const password = document.querySelector('#Password')?.value;
+            if (cpr) {
+                chrome.runtime.sendMessage({ action: 'saveCpr', cpr, username, password });
+            }
+        });
+    }
 };
 
 export const setupCprGenerator = () => {

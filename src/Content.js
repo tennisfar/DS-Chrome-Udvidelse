@@ -9,6 +9,9 @@ import { setupLayoutGrid } from './ContentScripts/DS/LayoutGrid';
 import { setupDsFastLogin } from "./ContentScripts/DS/FastLogIn";
 import { setupKlFastLogin } from './ContentScripts/Klasselotteriet/FastLogIn';
 import { setupCprGenerator } from './ContentScripts/MitIdSimulator/CprGenerator';
+import { setupNemLogIn } from './ContentScripts/MitIdSimulator/NemLogIn';
+import { setupFillNewAccountForm } from './ContentScripts/DS/FillNewAccountForm';
+import { setupFillCprPrompt } from './ContentScripts/DS/FillCprPrompt';
 
 setupDsFastLogin();
 setupKlFastLogin();
@@ -21,6 +24,9 @@ setupDsSitecoreDeveloperError();
 void setupLayoutGrid();
 void setupKlasselotterietLogIn();
 setupCprGenerator();
+setupNemLogIn();
+setupFillNewAccountForm();
+setupFillCprPrompt();
 
 if (location.host.endsWith('danskespil.dk')) {
   document.addEventListener('keydown', function (event) {

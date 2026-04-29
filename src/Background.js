@@ -15,11 +15,21 @@ chrome.runtime.onInstalled.addListener((reason) => {
   chrome.storage.sync.set({ showGrid });
   chrome.storage.sync.set({ fastLogin });
   chrome.storage.sync.set({ dsConfig });
+  chrome.storage.sync.set({ nyBruger: false });
+  chrome.storage.sync.set({ lastCpr: null });
+  chrome.storage.sync.set({ lastUsername: null });
+  chrome.storage.sync.set({ lastPassword: null });
 });
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action === 'callMyFunction') {
     sendResponse({ result: 'Function executed' });
+  }
+
+  if (request.action === 'saveCpr') {
+    chrome.storage.sync.set({ lastCpr: request.cpr });
+    if (request.username) chrome.storage.sync.set({ lastUsername: request.username });
+    if (request.password) chrome.storage.sync.set({ lastPassword: request.password });
   }
 });
 

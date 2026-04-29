@@ -14,6 +14,9 @@ En Chrome-udvidelse med værktøjer til Danske Spil-relaterede sites og Jira.
 
 ## Opdateringer
 
+### Version 1.16
+Ny popup-toggle "Ny bruger" (slået fra som standard) styrer al automatik til tilmeldingsflows. Når den er slået til, udfyldes tilmeldingsformularen på town41.danskespil.dk automatisk med e-mail, brugernavn, adgangskode, adresse, CPR og afkrydsningsfelter på tværs af trin 1–3. CPR-prompten på town41-id-dlo.danskespil.dk udfyldes ligeledes automatisk. På MitID Simulator-siden gemmes det sidst brugte CPR-nummer, brugernavn og adgangskode nu i udvidelsen, og admin-e-mail udfyldes automatisk. Derudover klikkes der automatisk på "Test login" på NemLogin og legitimationsoplysninger udfyldes på loginsimulatorsiden.
+
 ### Version 1.15
 På MitID Simulator-siden udfyldes testformularen nu med faste testværdier og et tilfældigt gyldigt CPR-nummer. En "Generer CPR"-knap giver mulighed for at generere et nyt CPR-nummer hvis ønsket.
 
