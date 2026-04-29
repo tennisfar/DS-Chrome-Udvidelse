@@ -1,16 +1,14 @@
 {
   "name": "ds-chrome-extension",
   "version": "1.17.1",
-  "description": "En Chrome/Edge udvidelse for DS.",
-  "main": "index.js",
+  "description": "Chrome/Edge-udvidelse med udviklingsværktøjer til Danske Spil, Sitecore, Jira og Klasselotteriet.",
   "scripts": {
     "dev": "npm start",
-    "start": "npm run update-version && webpack --mode development --watch",
-    "build": "npm run update-version && webpack --mode production",
-    "update-version": "node update-manifest-version.js"
+    "start": "node update-manifest-version.js && webpack --mode development --watch",
+    "build": "node update-manifest-version.js && webpack --mode production"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["github", "chrome-extension", "jira", "sitecore", "klasselotteriet", "danskespil"],
+  "author": "tennisfar",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.23.9",
