@@ -1,9 +1,9 @@
 const DS_NEW_ACCOUNT_HOST = 'town41.danskespil.dk';
 const DS_NEW_ACCOUNT_PATH = '/roed-konto/opret-konto';
 
-const EMAIL_DOMAIN = '@spam.danskespil.dk';
+const EMAIL_DOMAIN = '@spam.nu';
 const TEST_PASSWORD = 'Abc@1234';
-const TEST_USERNAME = 'town41dlo01';
+const DEFAULT_USERNAME = 'abcd01';
 
 const emailFromUsername = (username) => `${username}${EMAIL_DOMAIN}`;
 
@@ -16,6 +16,7 @@ const fillField = (input, value) => {
 const wireUsernameToEmail = (emailInput, usernameInput) => {
     usernameInput.addEventListener('input', () => {
         fillField(emailInput, emailFromUsername(usernameInput.value));
+        chrome.storage.sync.set({ savedUsername: usernameInput.value });
     });
 };
 
@@ -31,12 +32,16 @@ const tryFillCurrentStep = () => {
         const passwordRepeatInput = document.querySelector('#passwordRepeat input[type="password"]');
 
         if (emailInput && usernameInput && passwordInput && passwordRepeatInput) {
-            fillField(emailInput, emailFromUsername(TEST_USERNAME));
-            fillField(usernameInput, TEST_USERNAME);
-            fillField(passwordInput, TEST_PASSWORD);
-            fillField(passwordRepeatInput, TEST_PASSWORD);
-            passwordInput.closest('#password').querySelector('label').textContent = `Adgangskode - ${TEST_PASSWORD}`;
-            wireUsernameToEmail(emailInput, usernameInput);
+            chrome.storage.sync.get('savedUsername', ({ savedUsername }) => {
+                const username = savedUsername || DEFAULT_USERNAME;
+                fillField(emailInput, emailFromUsername(username));
+                fillField(usernameInput, username);
+                fillField(passwordInput, TEST_PASSWORD);
+                fillField(passwordRepeatInput, TEST_PASSWORD);
+                passwordInput.type = 'text';
+                passwordRepeatInput.type = 'text';
+                wireUsernameToEmail(emailInput, usernameInput);
+            });
             filledStep = 'step1';
         }
     } else if (hash.startsWith('#/step2') && filledStep !== 'step2') {

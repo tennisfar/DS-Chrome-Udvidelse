@@ -14,6 +14,9 @@ En Chrome-udvidelse med værktøjer til Danske Spil-relaterede sites og Jira.
 
 ## Opdateringer
 
+### Version 1.17
+Standard-brugernavn på MitID Simulator gemmes nu på tværs af sessioner. Adgangskodefeltet på trin 1 vises nu som fritekst, så værdien er synlig. "Ny bruger"-togglen er som standard slået til. Popup'en er redesignet med tydelige farvesektioner: "Ny bruger" og "Hurtig-login" i orange, "Vis layout grid" i mørkeblå. Der er tilføjet en "Opret identitet"-knap i MitID-sektionen.
+
 ### Version 1.16
 Ny popup-toggle "Ny bruger" (slået fra som standard) styrer al automatik til tilmeldingsflows. Når den er slået til, udfyldes tilmeldingsformularen på town41.danskespil.dk automatisk med e-mail, brugernavn, adgangskode, adresse, CPR og afkrydsningsfelter på tværs af trin 1–3. CPR-prompten på town41-id-dlo.danskespil.dk udfyldes ligeledes automatisk. På MitID Simulator-siden gemmes det sidst brugte CPR-nummer, brugernavn og adgangskode nu i udvidelsen, og admin-e-mail udfyldes automatisk. Derudover klikkes der automatisk på "Test login" på NemLogin og legitimationsoplysninger udfyldes på loginsimulatorsiden.
 

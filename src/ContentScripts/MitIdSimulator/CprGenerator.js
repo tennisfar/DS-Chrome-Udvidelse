@@ -57,7 +57,7 @@ const fillCpr = (cprInput) => {
     cprInput.dispatchEvent(new Event('change', { bubbles: true }));
     const username = `NielsHolm${cpr}`;
     setFieldValue('#Username', username);
-    setFieldValue('#adminEmail', `${username}@spam.danskespil.dk`);
+    setFieldValue('#adminEmail', `${username}@spam.nu`);
 };
 
 const injectButton = () => {

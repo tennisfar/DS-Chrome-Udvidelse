@@ -15,7 +15,8 @@ chrome.runtime.onInstalled.addListener((reason) => {
   chrome.storage.sync.set({ showGrid });
   chrome.storage.sync.set({ fastLogin });
   chrome.storage.sync.set({ dsConfig });
-  chrome.storage.sync.set({ nyBruger: false });
+  chrome.storage.sync.set({ nyBruger: true });
+  chrome.storage.sync.set({ savedUsername: null });
   chrome.storage.sync.set({ lastCpr: null });
   chrome.storage.sync.set({ lastUsername: null });
   chrome.storage.sync.set({ lastPassword: null });
