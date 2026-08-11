@@ -14,6 +14,9 @@ En Chrome-udvidelse med værktøjer til Danske Spil-relaterede sites og Jira.
 
 ## Opdateringer
 
+### Version 1.17.2
+Rettet JOSSO-sessionscookie-spejling i baggrundstjenesten: domænecheck håndterer nu cookies med foranstillet punktum (`.town41.danskespil.dk`), eksisterende cookies spejles ved service worker-opstart, `cookie.name` bruges i stedet for en hårdkodet konstant, og den lokale JOSSO-cookie genspejles straks fra town-domænet hvis den slettes af logout-flowet
+
 ### Version 1.17.1
 Fjernet automatisk udfyldning af login-formularen på Klasselotteriet
 

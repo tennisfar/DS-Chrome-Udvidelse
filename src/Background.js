@@ -37,10 +37,21 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 const TARGET_COOKIE = 'DLOSITECORE_JOSSO_SESSIONID';
 const LOCAL_HOST = 'local.danskespil.dk';
 
+// Mirror any already-existing town cookies on startup (onChanged won't fire for pre-existing cookies)
+chrome.cookies.getAll({ name: TARGET_COOKIE }, (cookies) => {
+  for (const cookie of cookies) {
+    const domain = cookie.domain.replace(/^\./, '');
+    if (domain === LOCAL_HOST) continue;
+    if (domain.startsWith('town') && domain.endsWith('.danskespil.dk')) {
+      mirrorToLocal(cookie);
+    }
+  }
+});
+
 function mirrorToLocal(cookie) {
   const params = {
     url: `https://${LOCAL_HOST}/`,
-    name: TARGET_COOKIE,
+    name: cookie.name,
     value: cookie.value,
     path: cookie.path || '/',
     secure: cookie.secure ?? true,
@@ -53,28 +64,40 @@ function mirrorToLocal(cookie) {
     params.expirationDate = cookie.expirationDate;
   }
 
-  chrome.cookies.set(params, (setCookie) => {
+  chrome.cookies.set(params, () => {
     if (chrome.runtime.lastError) {
-      console.warn('Setting local cookie failed:', chrome.runtime.lastError);
-    } else {
-      console.log('Mirrored cookie to local:', setCookie);
+      console.warn('[DS] Setting local cookie failed:', chrome.runtime.lastError);
     }
   });
 }
 
-// Listen for cookie creation/updates anywhere under *.danskespil.dk
-chrome.cookies.onChanged.addListener((details) => {
-  if (details.removed) return;
-  const cookie = details.cookie;
+function remirrorFromTown() {
+  chrome.cookies.getAll({ name: TARGET_COOKIE }, (cookies) => {
+    const townCookie = cookies.find(c => {
+      const d = c.domain.replace(/^\./, '');
+      return d.startsWith('town') && d.endsWith('.danskespil.dk');
+    });
+    if (townCookie) mirrorToLocal(townCookie);
+  });
+}
 
-  // Only react to the specific cookie
+chrome.cookies.onChanged.addListener((details) => {
+  const cookie = details.cookie;
   if (cookie.name !== TARGET_COOKIE) return;
 
-  // Ignore our own mirror to local to prevent loops
-  if (cookie.domain === LOCAL_HOST) return;
+  const domain = cookie.domain.replace(/^\./, '');
 
-  // Only consider cookies belonging to townXX.danskespil.dk
-  if (!(cookie.domain.startsWith('town') && cookie.domain.endsWith('.danskespil.dk'))) return;
+  // If local's JOSSO cookie was deleted (e.g. by the logout flow), immediately re-mirror
+  if (details.removed && domain === LOCAL_HOST) {
+    remirrorFromTown();
+    return;
+  }
 
-  mirrorToLocal(cookie);
+  if (details.removed) return;
+
+  // Mirror town cookies to local
+  if (domain === LOCAL_HOST) return;
+  if (domain.startsWith('town') && domain.endsWith('.danskespil.dk')) {
+    mirrorToLocal(cookie);
+  }
 });

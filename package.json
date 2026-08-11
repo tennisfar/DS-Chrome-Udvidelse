@@ -1,6 +1,6 @@
 {
   "name": "ds-chrome-extension",
-  "version": "1.17.1",
+  "version": "1.17.2",
   "description": "Chrome/Edge-udvidelse med udviklingsværktøjer til Danske Spil, Sitecore, Jira og Klasselotteriet.",
   "scripts": {
     "dev": "npm start",
