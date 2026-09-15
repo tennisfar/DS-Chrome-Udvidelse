@@ -14,6 +14,9 @@ En Chrome-udvidelse med værktøjer til Danske Spil-relaterede sites og Jira.
 
 ## Opdateringer
 
+### Version 1.17.3
+Rettet JOSSO-cookie-spejlingen, så login på et town-miljø (fx town41.danskespil.dk) nu korrekt overføres til local.danskespil.dk i stedet for at blive logget ud. Både `DLISITECORE_JOSSO_SESSIONID` og `DLOSITECORE_JOSSO_SESSIONID` spejles nu (tidligere kun sidstnævnte), spejlingen sker som en host-only cookie kun for local.danskespil.dk, og en eventuel gammel domænebred (`.danskespil.dk`) kopi af JOSSO-cookien ryddes op, så town-gatewayen ikke forveksler de to
+
 ### Version 1.17.2
 Rettet JOSSO-sessionscookie-spejling i baggrundstjenesten: domænecheck håndterer nu cookies med foranstillet punktum (`.town41.danskespil.dk`), eksisterende cookies spejles ved service worker-opstart, `cookie.name` bruges i stedet for en hårdkodet konstant, og den lokale JOSSO-cookie genspejles straks fra town-domænet hvis den slettes af logout-flowet
 

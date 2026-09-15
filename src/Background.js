@@ -34,20 +34,20 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   }
 });
 
-const TARGET_COOKIE = 'DLOSITECORE_JOSSO_SESSIONID';
+// Both the DLI and DLO contexts carry a JOSSO session cookie.
+const TARGET_COOKIES = ['DLISITECORE_JOSSO_SESSIONID', 'DLOSITECORE_JOSSO_SESSIONID'];
 const LOCAL_HOST = 'local.danskespil.dk';
+const LEGACY_DOMAIN = '.danskespil.dk';
 
 // Mirror any already-existing town cookies on startup (onChanged won't fire for pre-existing cookies)
-chrome.cookies.getAll({ name: TARGET_COOKIE }, (cookies) => {
-  for (const cookie of cookies) {
-    const domain = cookie.domain.replace(/^\./, '');
-    if (domain === LOCAL_HOST) continue;
-    if (domain.startsWith('town') && domain.endsWith('.danskespil.dk')) {
-      mirrorToLocal(cookie);
-    }
-  }
-});
+for (const name of TARGET_COOKIES) {
+  chrome.cookies.getAll({ name, domain: 'danskespil.dk' }, (cookies) => {
+    cookies.forEach(mirrorFromTownCookie);
+  });
+}
 
+// Mirror a town JOSSO cookie onto local as a host-only cookie (no `domain` field), so it's
+// never sent to the town host - avoids the town gateway seeing two cookies of the same name.
 function mirrorToLocal(cookie) {
   const params = {
     url: `https://${LOCAL_HOST}/`,
@@ -71,33 +71,36 @@ function mirrorToLocal(cookie) {
   });
 }
 
-function remirrorFromTown() {
-  chrome.cookies.getAll({ name: TARGET_COOKIE }, (cookies) => {
-    const townCookie = cookies.find(c => {
-      const d = c.domain.replace(/^\./, '');
-      return d.startsWith('town') && d.endsWith('.danskespil.dk');
-    });
-    if (townCookie) mirrorToLocal(townCookie);
-  });
+// A leftover domain-wide copy would also be sent to the town host, so it'd see two cookies
+// of the same name and pick the wrong one - remove it if one ever shows up.
+function removeLegacyDomainCookie(name, path) {
+  chrome.cookies.remove({ url: `https://danskespil.dk${path || '/'}`, name });
+}
+
+function mirrorFromTownCookie(cookie) {
+  if (cookie.domain === LEGACY_DOMAIN) {
+    removeLegacyDomainCookie(cookie.name, cookie.path);
+    return;
+  }
+  const domain = cookie.domain.replace(/^\./, '');
+  if (domain === LOCAL_HOST) return;
+  mirrorToLocal(cookie);
 }
 
 chrome.cookies.onChanged.addListener((details) => {
   const cookie = details.cookie;
-  if (cookie.name !== TARGET_COOKIE) return;
+  if (!TARGET_COOKIES.includes(cookie.name)) return;
 
-  const domain = cookie.domain.replace(/^\./, '');
-
-  // If local's JOSSO cookie was deleted (e.g. by the logout flow), immediately re-mirror
-  if (details.removed && domain === LOCAL_HOST) {
-    remirrorFromTown();
+  // Clean up a domain-wide copy the moment it appears, even if this event is a removal.
+  if (!details.removed && cookie.domain === LEGACY_DOMAIN) {
+    removeLegacyDomainCookie(cookie.name, cookie.path);
     return;
   }
 
   if (details.removed) return;
 
-  // Mirror town cookies to local
+  const domain = cookie.domain.replace(/^\./, '');
   if (domain === LOCAL_HOST) return;
-  if (domain.startsWith('town') && domain.endsWith('.danskespil.dk')) {
-    mirrorToLocal(cookie);
-  }
+  mirrorToLocal(cookie);
 });
+
