@@ -1,4 +1,4 @@
-const DS_NEW_ACCOUNT_HOSTS = ['town41.danskespil.dk', 'town21.danskespil.dk'];
+const DS_NEW_ACCOUNT_HOST_PATTERN = /^town\d+\.danskespil\.dk$/;
 const DS_NEW_ACCOUNT_PATH = '/roed-konto/opret-konto';
 
 const EMAIL_DOMAIN = '@spam.nu';
@@ -88,7 +88,7 @@ const tryFillCurrentStep = () => {
 
 export const setupFillNewAccountForm = () => {
     if (
-        !DS_NEW_ACCOUNT_HOSTS.includes(location.host) ||
+        !DS_NEW_ACCOUNT_HOST_PATTERN.test(location.host) ||
         !location.pathname.startsWith(DS_NEW_ACCOUNT_PATH)
     ) return;
 
